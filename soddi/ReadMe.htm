@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-    <title>StackOverflow Data Dump Import v.09</title>
+    <title>StackOverflow Data Dump Import v.1.1</title>
     <style type="text/css">
         
         pre { font-size:12px; font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier, monospace; }
@@ -11,12 +11,21 @@
 <pre>
 
 
-<strong>StackOverflow Data Dump Import v.11</strong>
+<strong>StackOverflow Data Dump Import v.1.1</strong>
+
+  StackOverflow Data Dump Import v.1.1
+
+  Portions of code (c) 2014 Jeremiah Peschka
+  <a href="http://github.com/peschkaj/soddi">http://github.com/peschkaj/soddi</a>
+  binaries available at: <a href="https://github.com/peschkaj/soddi/releases">https://github.com/peschkaj/soddi/releases</a>
+    
+  StackOverflow data dump available at: <a href="https://archive.org/details/stackexchange">https://archive.org/details/stackexchange</a>.
+
+    
+  Original code (c) 2010 Sky Sanders
+  licensed under MIT/GPL - see license.txt
 
   ClickOnce Installer: <a href="http://skysanders.net/tools/se/soddi/publish.htm">http://skysanders.net/tools/se/soddi/publish.htm</a>
-
-  (c) 2010 Sky Sanders
-  licensed under MIT/GPL - see license.txt
   
   msi :<a href="http://skysanders.net/files/soddi.10.msi">http://skysanders.net/files/soddi.11.msi</a>
   info:<a href="http://skysanders.net/tools/se">http://skysanders.net/tools/se</a>
@@ -25,14 +34,10 @@
 
 
 SODDI is a .Net 3.5 sp1 executable written in C# that quickly and cleanly imports StackOverflow Data Dump XML files into 
-MS Sql Server 2000/05/08, MySql Server 5.1 and SQLite3. (MySql and SQLite drivers are included)
+MS Sql Server 2005/08/12 (please stop actively using SQL Server 2005).
 
 SODDI can be run as a command line utility or, when invoked with no arguments or GUI argument, will
 present a Windows Form interface.
-
-<strong>Quick Start:</strong>
-The quickest route to your own copy of the StackOverflow databases is to use the ClickOnce installer,
-browse to the uncompressed data dump, accept the default SQLite provider selection and click 'Import'.
 
 <strong>USAGE:</strong>
 
@@ -51,15 +56,7 @@ TARGET          A valid ADO.Net connection string, including the provider invari
                 Sql Server: Database must exist. Data will be loaded into tables segregated by
                 schema named as the site data being imported. e.g. so.Users, meta.Users.
                 The tables are dropped before import.
-                
-                MySql: Connection string should include server, each site's data will be loaded
-                into a database named as the site imported. The databases will be dropped and 
-                recreated before import.
-                
-                SQLite: Connection string should specify a directory. The data will be imported
-                into seperate .db3 files, each named as the site imported. Existing data files
-                will be overwritten.
-                
+                               
                 The target database/datafile/schema names can be modified by explicitely specifying
                 sites to import and appending the desired schema as a parameter value or editing
                 the Sites list item schema in the GUI.
@@ -91,12 +88,6 @@ META|SO|SU|SF   Specifies which sites to import. If none are specified, all site
                 Sql Server - SO:StackOverflowData will load the data from the XXXXX SO directory 
                 into the database specified in the connection string and the schema 'StackOverflowData'
                 
-                MySql - SO:StackOverflowData will load the data from the XXXXX SO directory 
-                into a new database named StackOverflowData on the server specified in the connection string.
-                
-                SQLite - SO:StackOverflowData will load the data from the XXXXX SO directory into a new 
-                db3 file named StackOverflowData.db3 in the directory specified in the connection string.
-                
                 In GUI mode you may edit the schema item in the Sites list.
                 
 Options are not case sensitive.
@@ -106,15 +97,6 @@ Example command lines.
 GUI Mode:
 	soddi 
 
-SQLite - all sites:
-	soddi source:"F:\Export-030110" target:"data source=c:\temp;version=3;new=True;Provider=System.Data.SQLite"
-
-MySql - all sites:
-	soddi source:"F:\Export-030110" target:"server=localhost;user id=root;password=p@ssW0rd;Provider=MySql.Data.MySqlClient"
-
-MySql - Meta StackOverflow and StackOverflow data into specified databases:
-	soddi source:"F:\Export-030110" target:"server=localhost;user id=root;password=p@ssW0rd;Provider=MySql.Data.MySqlClient" meta:MetaDb so:SoDb
-	
 Sql Server - all sites:
 	soddi source:"F:\Export-030110" target:"data source=(local);initial catalog=SOData;integrated security=true;Provider=System.Data.SqlClient"
 	

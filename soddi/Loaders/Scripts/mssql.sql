@@ -16,10 +16,20 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'DUMMY.[Votes
 DROP TABLE DUMMY.[Votes]
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'DUMMY.[VoteTypes]') AND type in (N'U'))
 DROP TABLE DUMMY.[VoteTypes]
+IF EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'DUMMY.[PostLinks]') AND type IN (N'U'))
+DROP TABLE DUMMY.[PostLinks]
+IF EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'DUMMY.[LinkTypes]') AND type IN (N'U'))
+DROP TABLE DUMMY.[LinkTypes]
 
 SET ansi_nulls  ON
 SET quoted_identifier  ON
 SET ansi_padding  ON
+
+CREATE TABLE DUMMY.[LinkTypes] (
+  Id INT NOT NULL,
+  [Type] VARCHAR(40) NOT NULL,
+  CONSTRAINT PK_LinkTypes PRIMARY KEY CLUSTERED (Id ASC) 
+);
 
 CREATE TABLE DUMMY.[VoteTypes] (
   [Id]   [INT]    NOT NULL,
@@ -63,6 +73,8 @@ INSERT DUMMY.[VoteTypes] ([Id], [Name]) VALUES(12,N'Spam')
 INSERT DUMMY.[VoteTypes] ([Id], [Name]) VALUES(13,N'InformModerator')
 INSERT DUMMY.[PostTypes] ([Id], [Type]) VALUES(1, N'Question') 
 INSERT DUMMY.[PostTypes] ([Id], [Type]) VALUES(2, N'Answer') 
+INSERT DUMMY.[LinkTypes] ([Id], [Type]) VALUES(1, N'Linked')
+INSERT DUMMY.[LinkTypes] ([Id], [Type]) VALUES(3, N'Duplicate')
 
 IF 0 = 1--FULLTEXT
   BEGIN
@@ -120,7 +132,8 @@ CREATE TABLE DUMMY.[Users] (
   [Reputation]     [INT]    NOT NULL,
   [UpVotes]        [INT]    NOT NULL,
   [Views]          [INT]    NOT NULL,
-  [WebsiteUrl]     [NVARCHAR](200)    NULL
+  [WebsiteUrl]     [NVARCHAR](200)    NULL,
+  [AccountId]		[INT] NULL
   , CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ( [Id] ASC ) ON [PRIMARY]
   ) ON [PRIMARY]
 
@@ -250,6 +263,15 @@ CREATE TABLE DUMMY.[Badges] (
   [Date]   [DATETIME]    NOT NULL
   , CONSTRAINT [PK_Badges] PRIMARY KEY CLUSTERED ( [Id] ASC ) ON [PRIMARY]
   ) ON [PRIMARY]
+
+CREATE TABLE DUMMY.[PostLinks] (
+  Id INT NOT NULL,
+  CreationDate DATETIME NOT NULL,
+  PostId INT NOT NULL,
+  RelatedPostId INT NOT NULL,
+  LinkTypeId TINYINT NOT NULL,
+  CONSTRAINT [PK_PostLinks] PRIMARY KEY CLUSTERED ([Id] ASC)
+) 
 
 IF 0 = 1-- INDICES
   BEGIN
