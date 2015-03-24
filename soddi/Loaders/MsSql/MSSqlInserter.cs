@@ -99,7 +99,13 @@ namespace Salient.StackExchange.Import.Loaders.MsSql
                     {
                         script = script.Replace("-- INDICES", "");
                     }
-                    cmd.CommandText = script;
+
+					if ((Config.Options & Configuration.Configuration.ImportOptions.ForeignKeys) ==
+						Configuration.Configuration.ImportOptions.ForeignKeys)
+					{
+						script = script.Replace("IF 0 = 1--FK", "");
+					}
+					cmd.CommandText = script;
 
                     cmd.ExecuteNonQuery();
                 }

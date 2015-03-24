@@ -99,7 +99,8 @@ namespace Salient.StackExchange.Import.Gui
                     BatchSize = (int)BatchSizeNumericUpDown.Value,
                     Split = splitCheckBox.Checked,
                     Indices = indicesCheckBox.Checked,
-                    FullText = fullTextCheckBox.Checked
+                    FullText = fullTextCheckBox.Checked,
+					ForeignKeys = fkCheckBox.Checked,
                 };
             tconfig.Provider.ConnectionString = targetTextBox.Text;
             return tconfig;
@@ -356,5 +357,10 @@ namespace Salient.StackExchange.Import.Gui
                 sourceTextBox.Text = bfd.SelectedPath;
             }
         }
+
+		private void splitCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+
+		}
     }
 }

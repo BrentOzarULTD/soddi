@@ -82,6 +82,21 @@ namespace Salient.StackExchange.Import.Properties {
                 this["FullTextChecked"] = value;
             }
         }
+
+		[global::System.Configuration.UserScopedSettingAttribute()]
+		[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+		[global::System.Configuration.DefaultSettingValueAttribute("False")]
+		public bool FKChecked
+		{
+			get
+			{
+				return ((bool)(this["FKChecked"]));
+			}
+			set
+			{
+				this["FKChecked"] = value;
+			}
+		}
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

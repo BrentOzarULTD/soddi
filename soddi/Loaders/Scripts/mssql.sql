@@ -339,7 +339,7 @@ IF 0 = 1-- INDICES
     ON [PRIMARY];
   END
 
-IF 0 = 1-- INDICES
+IF 0 = 1--FK
   BEGIN
 
     ALTER TABLE Posts
