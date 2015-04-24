@@ -100,7 +100,7 @@ namespace Salient.StackExchange.Import.Gui
                     Split = splitCheckBox.Checked,
                     Indices = indicesCheckBox.Checked,
                     FullText = fullTextCheckBox.Checked,
-					ForeignKeys = fkCheckBox.Checked,
+                    ForeignKeys = fkCheckBox.Checked,
                 };
             tconfig.Provider.ConnectionString = targetTextBox.Text;
             return tconfig;
@@ -358,9 +358,9 @@ namespace Salient.StackExchange.Import.Gui
             }
         }
 
-		private void splitCheckBox_CheckedChanged(object sender, EventArgs e)
-		{
+        private void splitCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
 
-		}
+        }
     }
 }

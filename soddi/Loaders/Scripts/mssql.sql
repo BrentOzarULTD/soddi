@@ -96,14 +96,14 @@ CREATE TABLE DUMMY.[PostTypes] (
 
 IF 0 = 1--SPLIT
   BEGIN
-	SET ansi_nulls  ON
-	SET quoted_identifier  ON
+    SET ansi_nulls  ON
+    SET quoted_identifier  ON
 
-	CREATE TABLE DUMMY.[PostTags] (
-	  [PostId] [INT]    NOT NULL,
-	  [Tag]    [NVARCHAR](50)    NOT NULL
-	  , CONSTRAINT [PK_PostTags__PostId_Tag] PRIMARY KEY CLUSTERED ( [PostId] ASC,[Tag] ASC ) ON [PRIMARY]
-	  ) ON [PRIMARY]
+    CREATE TABLE DUMMY.[PostTags] (
+      [PostId] [INT]    NOT NULL,
+      [Tag]    [NVARCHAR](50)    NOT NULL
+      , CONSTRAINT [PK_PostTags__PostId_Tag] PRIMARY KEY CLUSTERED ( [PostId] ASC,[Tag] ASC ) ON [PRIMARY]
+      ) ON [PRIMARY]
   
   END
 
@@ -136,14 +136,14 @@ INSERT DUMMY.[LinkTypes] ([Id], [Type]) VALUES(3, N'Duplicate')
 
 IF 0 = 1--FULLTEXT
   BEGIN
-	IF  EXISTS (SELECT * FROM sys.fulltext_indexes fti WHERE fti.object_id = OBJECT_ID(N'DUMMY.[Posts]'))
-	ALTER FULLTEXT INDEX ON DUMMY.[Posts] DISABLE
-	IF  EXISTS (SELECT * FROM sys.fulltext_indexes fti WHERE fti.object_id = OBJECT_ID(N'DUMMY.[Posts]'))
-	DROP FULLTEXT INDEX ON DUMMY.[Posts]
-	IF  EXISTS (SELECT * FROM sysfulltextcatalogs ftc WHERE ftc.name = N'PostFullText')
-	DROP FULLTEXT CATALOG [PostFullText]
-	CREATE FULLTEXT CATALOG [PostFullText]WITH ACCENT_SENSITIVITY = ON
-	AUTHORIZATION dbo
+    IF  EXISTS (SELECT * FROM sys.fulltext_indexes fti WHERE fti.object_id = OBJECT_ID(N'DUMMY.[Posts]'))
+    ALTER FULLTEXT INDEX ON DUMMY.[Posts] DISABLE
+    IF  EXISTS (SELECT * FROM sys.fulltext_indexes fti WHERE fti.object_id = OBJECT_ID(N'DUMMY.[Posts]'))
+    DROP FULLTEXT INDEX ON DUMMY.[Posts]
+    IF  EXISTS (SELECT * FROM sysfulltextcatalogs ftc WHERE ftc.name = N'PostFullText')
+    DROP FULLTEXT CATALOG [PostFullText]
+    CREATE FULLTEXT CATALOG [PostFullText]WITH ACCENT_SENSITIVITY = ON
+    AUTHORIZATION dbo
   END
 
 
@@ -247,41 +247,41 @@ IF 0 = 1-- INDICES
 
 IF 0 = 1--FULLTEXT
   BEGIN
-	EXEC dbo.Sp_fulltext_table
-	  @tabname = N'DUMMY.[Posts]' ,
-	  @action = N'create' ,
-	  @keyname = N'PK_Posts__Id' ,
-	  @ftcat = N'PostFullText'
+    EXEC dbo.Sp_fulltext_table
+      @tabname = N'DUMMY.[Posts]' ,
+      @action = N'create' ,
+      @keyname = N'PK_Posts__Id' ,
+      @ftcat = N'PostFullText'
 
-	DECLARE  @lcid INT
+    DECLARE  @lcid INT
 
-	SELECT @lcid = lcid
-	FROM   MASTER.dbo.syslanguages
-	WHERE  alias = N'English'
+    SELECT @lcid = lcid
+    FROM   MASTER.dbo.syslanguages
+    WHERE  alias = N'English'
 
-	EXEC dbo.Sp_fulltext_column
-	  @tabname = N'DUMMY.[Posts]' ,
-	  @colname = N'Body' ,
-	  @action = N'add' ,
-	  @language = @lcid
+    EXEC dbo.Sp_fulltext_column
+      @tabname = N'DUMMY.[Posts]' ,
+      @colname = N'Body' ,
+      @action = N'add' ,
+      @language = @lcid
 
-	SELECT @lcid = lcid
-	FROM   MASTER.dbo.syslanguages
-	WHERE  alias = N'English'
+    SELECT @lcid = lcid
+    FROM   MASTER.dbo.syslanguages
+    WHERE  alias = N'English'
 
-	EXEC dbo.Sp_fulltext_column
-	  @tabname = N'DUMMY.[Posts]' ,
-	  @colname = N'Title' ,
-	  @action = N'add' ,
-	  @language = @lcid
+    EXEC dbo.Sp_fulltext_column
+      @tabname = N'DUMMY.[Posts]' ,
+      @colname = N'Title' ,
+      @action = N'add' ,
+      @language = @lcid
 
-	EXEC dbo.Sp_fulltext_table
-	  @tabname = N'DUMMY.[Posts]' ,
-	  @action = N'start_change_tracking'
+    EXEC dbo.Sp_fulltext_table
+      @tabname = N'DUMMY.[Posts]' ,
+      @action = N'start_change_tracking'
 
-	EXEC dbo.Sp_fulltext_table
-	  @tabname = N'DUMMY.[Posts]' ,
-	  @action = N'start_background_updateindex'
+    EXEC dbo.Sp_fulltext_table
+      @tabname = N'DUMMY.[Posts]' ,
+      @action = N'start_background_updateindex'
 
   END
 
