@@ -18,7 +18,10 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ProviderName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">System.Data.SQLite</Value>
+    </Setting>
+    <Setting Name="FKChecked" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

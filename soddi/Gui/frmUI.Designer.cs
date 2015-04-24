@@ -245,7 +245,7 @@ namespace Salient.StackExchange.Import.Gui
             this.MessageColumnHeader});
             this.TasksListView.Location = new System.Drawing.Point(9, 220);
             this.TasksListView.Name = "TasksListView";
-            this.TasksListView.Size = new System.Drawing.Size(599, 171);
+            this.TasksListView.Size = new System.Drawing.Size(624, 171);
             this.TasksListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.TasksListView.TabIndex = 21;
             this.TasksListView.TabStop = false;
@@ -281,7 +281,7 @@ namespace Salient.StackExchange.Import.Gui
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 468);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 553);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(589, 22);
             this.statusStrip1.TabIndex = 23;
@@ -396,7 +396,7 @@ namespace Salient.StackExchange.Import.Gui
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(584, 507);
+            this.ClientSize = new System.Drawing.Size(584, 592);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
