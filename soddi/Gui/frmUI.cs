@@ -331,6 +331,8 @@ namespace Salient.StackExchange.Import.Gui
             {
                 DbProviderInfo info = (DbProviderInfo)dbProvidersComboBox.SelectedItem;
                 DbConnectionStringBuilder csb = info.Factory.CreateConnectionStringBuilder();
+                
+                //TODO: R2 - Why are we setting the ConnectionString from the Textbox then doing the reverse?
                 csb.ConnectionString = targetTextBox.Text;
                 targetTextBox.Text = csb.ConnectionString;
             }
@@ -358,7 +360,24 @@ namespace Salient.StackExchange.Import.Gui
             }
         }
 
-        private void splitCheckBox_CheckedChanged(object sender, EventArgs e)
+        private ListViewItem lastItemChecked;
+
+        private void listView1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            // if we have the lastItem set as checked, and it is different
+            // item than the one that fired the event, uncheck it
+            if (lastItemChecked != null && lastItemChecked.Checked
+                && lastItemChecked != listView1.Items[e.Index])
+            {
+                // uncheck the last item and store the new one
+                lastItemChecked.Checked = false;
+            }
+
+            // store current item
+            lastItemChecked = listView1.Items[e.Index];
+        }
+
+        private void dbProvidersBindingSource_CurrentChanged(object sender, EventArgs e)
         {
 
         }

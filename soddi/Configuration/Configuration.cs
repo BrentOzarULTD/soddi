@@ -13,11 +13,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Common;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Windows.Forms.VisualStyles;
 using Salient.StackExchange.Import.Loaders;
 using Salient.StackExchange.Import.TableTypes;
 
@@ -45,6 +47,32 @@ namespace Salient.StackExchange.Import.Configuration
 
         private const int DefaultBatchSize = 5000;
 
+        public class StackOverflowFile
+        {
+            public string FileName { get; set; }
+            public bool IsFound { get; set; }
+
+            //public StackOverflowFile(string fileName , bool isFound )
+            //{
+            //    FileName = fileName;
+            //    IsFound = isFound;
+            //}
+        }
+
+        public static List<StackOverflowFile> GetStackOverflowFileList()
+        {
+            List<StackOverflowFile> fileList = new List<StackOverflowFile>();
+            fileList.Add(new StackOverflowFile() { FileName = "Badges.xml", IsFound = false });
+            fileList.Add(new StackOverflowFile() { FileName = "Comments.xml", IsFound = false });
+            fileList.Add(new StackOverflowFile() { FileName = "PostHistory.xml", IsFound = false });
+            fileList.Add(new StackOverflowFile() { FileName = "PostLinks.xml", IsFound = false });
+            fileList.Add(new StackOverflowFile() { FileName = "Posts.xml", IsFound = false });
+            fileList.Add(new StackOverflowFile() { FileName = "Tags.xml", IsFound = false });
+            fileList.Add(new StackOverflowFile() { FileName = "Users.xml", IsFound = false });
+            fileList.Add(new StackOverflowFile() { FileName = "Votes.xml", IsFound = false });
+
+            return fileList;
+        } 
 
         public Configuration()
         {
@@ -157,34 +185,72 @@ namespace Salient.StackExchange.Import.Configuration
             }
         }
 
+        //public static List<string> GetAllSites(string source)
+        //{
+        //    List<string> sites = new List<string>();
+        //    Regex dirRx = new Regex(@"^(\d+) ([A-Za-z]+)$", RegexOptions.IgnoreCase);
+        //    string[] dirs = Directory.GetDirectories(source);
+        //    foreach (string dir in dirs)
+        //    {
+        //        Match match = dirRx.Match(Path.GetFileName(dir));
+        //        if (match.Success)
+        //        {
+        //            sites.Add(match.Groups[2].Value);
+        //        }
+        //    }
+        //    return sites;
+        //}
+
+        //public static ImportTarget GetSite(string source, string arg)
+        //{
+        //    string[] segments = arg.Split(new[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+
+        //    string siteId = segments[0];
+
+        //    string siteSchema = segments.Length > 1 ? segments[1] : siteId;
+
+        //    string[] dirs = Directory.GetDirectories(source, "* " + siteId);
+
+        //    return dirs.Length == 0 ? null : new ImportTarget(segments[0], dirs[0], siteSchema);
+        //}
 
         public static List<string> GetAllSites(string source)
         {
             List<string> sites = new List<string>();
-            Regex dirRx = new Regex(@"^(\d+) ([A-Za-z]+)$", RegexOptions.IgnoreCase);
             string[] dirs = Directory.GetDirectories(source);
             foreach (string dir in dirs)
             {
-                Match match = dirRx.Match(Path.GetFileName(dir));
-                if (match.Success)
+                List<StackOverflowFile> soFiles = GetStackOverflowFileList();
+                foreach (string file in Directory.GetFiles(dir))
                 {
-                    sites.Add(match.Groups[2].Value);
+                    foreach (StackOverflowFile soFile in soFiles.Where(x => x.FileName == Path.GetFileName(file)))
+                    {
+                        soFile.IsFound = true;
+                    }
+                }
+
+                bool soValid = true;
+                foreach (StackOverflowFile soFile in soFiles)
+                {
+                    if (soFile.IsFound == false)
+                    {
+                        soValid = false;
+                        break;
+                    }
+                }
+
+                if (soValid)
+                {
+                    sites.Add(Path.GetFileName(dir));
                 }
             }
             return sites;
+
         }
 
         public static ImportTarget GetSite(string source, string arg)
         {
-            string[] segments = arg.Split(new[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
-
-            string siteId = segments[0];
-
-            string siteSchema = segments.Length > 1 ? segments[1] : siteId;
-
-            string[] dirs = Directory.GetDirectories(source, "* " + siteId);
-
-            return dirs.Length == 0 ? null : new ImportTarget(segments[0], dirs[0], siteSchema);
+            return new ImportTarget(arg, Path.Combine(source, arg), Properties.Settings.Default.DefaultSchema);
         }
 
         public static List<ImportTarget> GetTargets(string source, IEnumerable<string> unparsed)
@@ -241,6 +307,9 @@ namespace Salient.StackExchange.Import.Configuration
                         break;
                     case "gui":
                         Options = Options | ImportOptions.GUI;
+                        break;
+                    case "foreignkeys":
+                        Options = Options | ImportOptions.ForeignKeys;
                         break;
                     default:
                         unparsed.Add(args[i].Trim());

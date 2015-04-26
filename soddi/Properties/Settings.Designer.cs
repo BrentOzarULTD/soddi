@@ -85,7 +85,19 @@ namespace Salient.StackExchange.Import.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("System.Data.SQLite")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FKChecked {
+            get {
+                return ((bool)(this["FKChecked"]));
+            }
+            set {
+                this["FKChecked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("System.Data.SqlClient")]
         public string ProviderName {
             get {
                 return ((string)(this["ProviderName"]));
@@ -97,13 +109,13 @@ namespace Salient.StackExchange.Import.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool FKChecked {
+        [global::System.Configuration.DefaultSettingValueAttribute("dbo")]
+        public string DefaultSchema {
             get {
-                return ((bool)(this["FKChecked"]));
+                return ((string)(this["DefaultSchema"]));
             }
             set {
-                this["FKChecked"] = value;
+                this["DefaultSchema"] = value;
             }
         }
     }

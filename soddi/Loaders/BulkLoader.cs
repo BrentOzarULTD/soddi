@@ -45,6 +45,7 @@ namespace Salient.StackExchange.Import.Loaders
             _jobs = new JobList();
             _jobs.RowsInserted += (s, e) => OnRowsInserted(e);
             Config = config;
+            DefaultSchema = "dbo";
         }
 
         #endregion
@@ -55,6 +56,8 @@ namespace Salient.StackExchange.Import.Loaders
         {
             get { return _jobs; }
         }
+
+        public string DefaultSchema { get; set; }
 
         #endregion
 
