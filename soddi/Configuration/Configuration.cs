@@ -51,12 +51,6 @@ namespace Salient.StackExchange.Import.Configuration
         {
             public string FileName { get; set; }
             public bool IsFound { get; set; }
-
-            //public StackOverflowFile(string fileName , bool isFound )
-            //{
-            //    FileName = fileName;
-            //    IsFound = isFound;
-            //}
         }
 
         public static List<StackOverflowFile> GetStackOverflowFileList()
@@ -184,35 +178,6 @@ namespace Salient.StackExchange.Import.Configuration
                     string.Format("Source  : {0}\r\nTarget  : {1}\r\nOptions : {2}", Source, Target, Options);
             }
         }
-
-        //public static List<string> GetAllSites(string source)
-        //{
-        //    List<string> sites = new List<string>();
-        //    Regex dirRx = new Regex(@"^(\d+) ([A-Za-z]+)$", RegexOptions.IgnoreCase);
-        //    string[] dirs = Directory.GetDirectories(source);
-        //    foreach (string dir in dirs)
-        //    {
-        //        Match match = dirRx.Match(Path.GetFileName(dir));
-        //        if (match.Success)
-        //        {
-        //            sites.Add(match.Groups[2].Value);
-        //        }
-        //    }
-        //    return sites;
-        //}
-
-        //public static ImportTarget GetSite(string source, string arg)
-        //{
-        //    string[] segments = arg.Split(new[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
-
-        //    string siteId = segments[0];
-
-        //    string siteSchema = segments.Length > 1 ? segments[1] : siteId;
-
-        //    string[] dirs = Directory.GetDirectories(source, "* " + siteId);
-
-        //    return dirs.Length == 0 ? null : new ImportTarget(segments[0], dirs[0], siteSchema);
-        //}
 
         public static List<string> GetAllSites(string source)
         {
