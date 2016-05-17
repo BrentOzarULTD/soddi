@@ -1,26 +1,30 @@
 ﻿
-StackOverflow Data Dump Import v.11
+StackOverflow Data Dump Import v.1.1
+
+  Portions of code (c) 2014 Jeremiah Peschka
+  http://github.com/peschkaj/soddi
+  binaries available at: https://github.com/peschkaj/soddi/releases
+
+  StackOverflow data dump available at: https://archive.org/details/stackexchange
+
+
+  Original code (c) 2010 Sky Sanders
+  licensed under MIT/GPL - see license.txt
 
   ClickOnce Installer: http://skysanders.net/tools/se/soddi/publish.htm
 
-  (c) 2010 Sky Sanders
-  licensed under MIT/GPL - see license.txt
-  
   info:http://skysanders.net/tools/se
   msi :http://skysanders.net/files/soddi.11.msi
   bin :http://skysanders.net/files/soddi.11.zip
   src :http://bitbucket.org/bitpusher/soddi/
 
 
+
 SODDI is a .Net 3.5 sp1 executable written in C# that quickly and cleanly imports StackOverflow Data Dump XML files into 
-MS Sql Server 2000/05/08, MySql Server 5.1 and SQLite3. (MySql and SQLite drivers are included)
+MS Sql Server 2005/08/12 (please stop actively using SQL Server 2005).
 
 SODDI can be run as a command line utility or, when invoked with no arguments or GUI argument, will
 present a Windows Form interface.
-
-Quick Start:
-The quickest route to your own copy of the StackOverflow databases is to use the ClickOnce installer,
-browse to the uncompressed data dump, accept the default SQLite provider selection and click 'Import'.
 
 
 USAGE:
@@ -40,14 +44,6 @@ TARGET          A valid ADO.Net connection string, including the provider invari
                 Sql Server: Database must exist. Data will be loaded into tables segregated by
                 schema named as the site data being imported. e.g. so.Users, meta.Users.
                 The tables are dropped before import.
-                
-                MySql: Connection string should include server, each site's data will be loaded
-                into a database named as the site imported. The databases will be dropped and 
-                recreated before import.
-                
-                SQLite: Connection string should specify a directory. The data will be imported
-                into seperate .db3 files, each named as the site imported. Existing data files
-                will be overwritten.
                 
                 The target database/datafile/schema names can be modified by explicitely specifying
                 sites to import and appending the desired schema as a parameter value or editing
@@ -80,12 +76,6 @@ META|SO|SU|SF   Specifies which sites to import. If none are specified, all site
                 Sql Server - SO:StackOverflowData will load the data from the XXXXX SO directory 
                 into the database specified in the connection string and the schema 'StackOverflowData'
                 
-                MySql - SO:StackOverflowData will load the data from the XXXXX SO directory 
-                into a new database named StackOverflowData on the server specified in the connection string.
-                
-                SQLite - SO:StackOverflowData will load the data from the XXXXX SO directory into a new 
-                db3 file named StackOverflowData.db3 in the directory specified in the connection string.
-                
                 In GUI mode you may edit the schema item in the Sites list.
                 
 Options are not case sensitive.
@@ -95,15 +85,6 @@ Example command lines.
 GUI Mode:
 	soddi 
 
-SQLite - all sites:
-	soddi source:"F:\Export-030110" target:"data source=c:\temp;version=3;new=True;Provider=System.Data.SQLite"
-
-MySql - all sites:
-	soddi source:"F:\Export-030110" target:"server=localhost;user id=root;password=p@ssW0rd;Provider=MySql.Data.MySqlClient"
-
-MySql - Meta StackOverflow and StackOverflow data into specified databases:
-	soddi source:"F:\Export-030110" target:"server=localhost;user id=root;password=p@ssW0rd;Provider=MySql.Data.MySqlClient" meta:MetaDb so:SoDb
-	
 Sql Server - all sites:
 	soddi source:"F:\Export-030110" target:"data source=(local);initial catalog=SOData;integrated security=true;Provider=System.Data.SqlClient"
 	

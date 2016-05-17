@@ -23,7 +23,6 @@ namespace Salient.StackExchange.Import.Loaders
 
         public String Name;
         public string Path;
-
         public string Schema;
 
         #endregion

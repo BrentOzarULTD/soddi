@@ -17,8 +17,14 @@
     <Setting Name="FullTextChecked" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="FKChecked" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="ProviderName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">System.Data.SqlClient</Value>
+    </Setting>
+    <Setting Name="DefaultSchema" Type="System.String" Scope="User">
+      <Value Profile="(Default)">dbo</Value>
     </Setting>
   </Settings>
 </SettingsFile>
