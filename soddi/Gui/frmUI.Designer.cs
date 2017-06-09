@@ -65,6 +65,7 @@ namespace Salient.StackExchange.Import.Gui
             this.fkCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BrowseSourceButton = new System.Windows.Forms.Button();
+            this.BrowseTargetButton = new System.Windows.Forms.Button();
             bulkInsertBatchSizeLabel = new System.Windows.Forms.Label();
             sourceLabel = new System.Windows.Forms.Label();
             targetLabel = new System.Windows.Forms.Label();
@@ -199,7 +200,7 @@ namespace Salient.StackExchange.Import.Gui
             this.targetTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Salient.StackExchange.Import.Properties.Settings.Default, "TargetText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.targetTextBox.Location = new System.Drawing.Point(5, 52);
             this.targetTextBox.Name = "targetTextBox";
-            this.targetTextBox.Size = new System.Drawing.Size(370, 20);
+            this.targetTextBox.Size = new System.Drawing.Size(341, 20);
             this.targetTextBox.TabIndex = 3;
             this.targetTextBox.Text = global::Salient.StackExchange.Import.Properties.Settings.Default.TargetText;
             this.toolTip1.SetToolTip(this.targetTextBox, resources.GetString("targetTextBox.ToolTip"));
@@ -361,6 +362,7 @@ namespace Salient.StackExchange.Import.Gui
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.BrowseTargetButton);
             this.panel1.Controls.Add(this.fkCheckBox);
             this.panel1.Controls.Add(this.listView1);
             this.panel1.Controls.Add(this.BrowseSourceButton);
@@ -390,6 +392,16 @@ namespace Salient.StackExchange.Import.Gui
             this.BrowseSourceButton.Text = "...";
             this.BrowseSourceButton.UseVisualStyleBackColor = true;
             this.BrowseSourceButton.Click += new System.EventHandler(this.BrowseSourceButton_Click);
+            // 
+            // BrowseTargetButton
+            // 
+            this.BrowseTargetButton.Location = new System.Drawing.Point(351, 52);
+            this.BrowseTargetButton.Name = "BrowseTargetButton";
+            this.BrowseTargetButton.Size = new System.Drawing.Size(25, 23);
+            this.BrowseTargetButton.TabIndex = 24;
+            this.BrowseTargetButton.Text = "...";
+            this.BrowseTargetButton.UseVisualStyleBackColor = true;
+            this.BrowseTargetButton.Click += new System.EventHandler(this.BrowseTargetButton_Click);
             // 
             // FrmUI
             // 
@@ -452,5 +464,6 @@ namespace Salient.StackExchange.Import.Gui
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button BrowseSourceButton;
         private System.Windows.Forms.CheckBox fkCheckBox;
+        private System.Windows.Forms.Button BrowseTargetButton;
     }
 }

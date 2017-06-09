@@ -381,5 +381,14 @@ namespace Salient.StackExchange.Import.Gui
         {
 
         }
+
+        private void BrowseTargetButton_Click(object sender, EventArgs e)
+        {
+            string connectionString = "";
+            if (Utils.TryGetDataConnectionStringFromUser(out connectionString))
+            {
+                targetTextBox.Text = connectionString;
+            }
+        }
     }
 }
