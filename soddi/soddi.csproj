@@ -240,6 +240,7 @@
     <Content Include="LICENSE.TXT">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="WhatToDoWhenVS2017SaysSODDI_SetupIsAnUnsupportedProjectType.txt" />
     <EmbeddedResource Include="Loaders\Scripts\mysql.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
