@@ -11,6 +11,7 @@ And loads them into a database. If you don't want to hassle with this, just grab
 Using It
 --------
 
+- Compile the latest dev branch yourself from source, or download the most recent official release: https://github.com/BrentOzarULTD/soddi/releases
 - Create a folder to hold the extracted XML files (e.g. `C:\TEMP`)
 - Extract files into a separate folder per StackExchange site (e.g. `122017 Stack Overflow`). The MMYYYY format is important.
 - Fire up the `soddi.exe`
