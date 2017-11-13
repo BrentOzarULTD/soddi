@@ -1,0 +1,4 @@
+﻿
+VS2017 doesn't support Visual Studio Installer projects right out of the box. You'll need to install this extension.
+
+https://marketplace.visualstudio.com/items?itemName=VisualStudioProductTeam.MicrosoftVisualStudio2017InstallerProjects
