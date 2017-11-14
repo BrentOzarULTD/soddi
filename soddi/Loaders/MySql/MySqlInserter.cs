@@ -85,6 +85,11 @@ namespace Salient.StackExchange.Import.Loaders.MySql
                     {
                         script = script.Replace("-- INDICES", "");
                     }
+                    if ((Config.Options & Configuration.Configuration.ImportOptions.Identity) ==
+                        Configuration.Configuration.ImportOptions.Identity)
+                    {
+                        script = script.Replace("/* IDENTITY */", "AUTO_INCREMENT");
+                    }
                     cmd.CommandText = script;
 
                     cmd.ExecuteNonQuery();

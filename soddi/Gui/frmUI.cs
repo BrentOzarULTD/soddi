@@ -101,6 +101,7 @@ namespace Salient.StackExchange.Import.Gui
                     Indices = indicesCheckBox.Checked,
                     FullText = fullTextCheckBox.Checked,
                     ForeignKeys = fkCheckBox.Checked,
+                    Identity = identityCheckBox.Checked
                 };
             tconfig.Provider.ConnectionString = targetTextBox.Text;
             return tconfig;
@@ -116,6 +117,7 @@ namespace Salient.StackExchange.Import.Gui
             indicesCheckBox.Checked = configuration.Indices;
             splitCheckBox.Checked = configuration.Split;
             fullTextCheckBox.Checked = configuration.FullText;
+            identityCheckBox.Checked = configuration.Identity;
             BatchSizeNumericUpDown.Value = configuration.BatchSize;
 
             if (configuration.Provider != null)

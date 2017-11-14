@@ -9,11 +9,11 @@ PRAGMA temp_store = MEMORY;
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
 CREATE TABLE [PostTypes] (
-    [Id] int PRIMARY KEY NOT NULL,
+    [Id] INTEGER PRIMARY KEY /* IDENTITY */ NOT NULL,
     [Type] nvarchar(10) NOT NULL
 );
 CREATE TABLE [VoteTypes] (
-    [Id] int PRIMARY KEY NOT NULL,
+    [Id] INTEGER PRIMARY KEY /* IDENTITY */ NOT NULL,
     [Name] varchar(40) NOT NULL
 );
 CREATE TABLE [PostTags] (
@@ -41,7 +41,7 @@ INSERT INTO PostTypes (Id, Type) VALUES(1, 'Question');
 INSERT INTO PostTypes (Id, Type) VALUES(2, 'Answer'); 
 
 CREATE TABLE [Votes] (
-    [Id] int PRIMARY KEY NOT NULL,
+    [Id] INTEGER PRIMARY KEY /* IDENTITY */ NOT NULL,
     [PostId] int NOT NULL,
     [UserId] int,
     [BountyAmount] int,
@@ -49,7 +49,7 @@ CREATE TABLE [Votes] (
     [CreationDate] datetime NOT NULL
 );
 CREATE TABLE [Users] (
-    [Id] int PRIMARY KEY NOT NULL,
+    [Id] INTEGER PRIMARY KEY /* IDENTITY */ NOT NULL,
     [AboutMe] nvarchar(2100),
     [Age] int,
     [CreationDate] datetime NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE [Users] (
     [WebsiteUrl] nvarchar(200)
 );
 CREATE TABLE [Posts] (
-    [Id] int PRIMARY KEY NOT NULL,
+    [Id] INTEGER PRIMARY KEY /* IDENTITY */ NOT NULL,
     [AcceptedAnswerId] int,
     [AnswerCount] int,
     [Body] ntext NOT NULL,
@@ -86,7 +86,7 @@ CREATE TABLE [Posts] (
     [ViewCount] int NOT NULL
 );
 CREATE TABLE [Comments] (
-    [Id] int PRIMARY KEY NOT NULL,
+    [Id] INTEGER PRIMARY KEY /* IDENTITY */ NOT NULL,
     [CreationDate] datetime NOT NULL,
     [PostId] int NOT NULL,
     [Score] int,
@@ -94,7 +94,7 @@ CREATE TABLE [Comments] (
     [UserId] int
 );
 CREATE TABLE [Badges] (
-    [Id] int PRIMARY KEY NOT NULL,
+    [Id] INTEGER PRIMARY KEY /* IDENTITY */ NOT NULL,
     [Name] nvarchar(40) NOT NULL,
     [UserId] int NOT NULL,
     [Date] datetime NOT NULL

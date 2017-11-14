@@ -64,8 +64,9 @@ namespace Salient.StackExchange.Import.Gui
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.fkCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.BrowseSourceButton = new System.Windows.Forms.Button();
+            this.identityCheckBox = new System.Windows.Forms.CheckBox();
             this.BrowseTargetButton = new System.Windows.Forms.Button();
+            this.BrowseSourceButton = new System.Windows.Forms.Button();
             bulkInsertBatchSizeLabel = new System.Windows.Forms.Label();
             sourceLabel = new System.Windows.Forms.Label();
             targetLabel = new System.Windows.Forms.Label();
@@ -82,52 +83,58 @@ namespace Salient.StackExchange.Import.Gui
             // bulkInsertBatchSizeLabel
             // 
             bulkInsertBatchSizeLabel.AutoSize = true;
-            bulkInsertBatchSizeLabel.Location = new System.Drawing.Point(294, 75);
+            bulkInsertBatchSizeLabel.Location = new System.Drawing.Point(441, 115);
+            bulkInsertBatchSizeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             bulkInsertBatchSizeLabel.Name = "bulkInsertBatchSizeLabel";
-            bulkInsertBatchSizeLabel.Size = new System.Drawing.Size(61, 13);
+            bulkInsertBatchSizeLabel.Size = new System.Drawing.Size(90, 20);
             bulkInsertBatchSizeLabel.TabIndex = 1;
             bulkInsertBatchSizeLabel.Text = "Batch Size:";
             // 
             // sourceLabel
             // 
             sourceLabel.AutoSize = true;
-            sourceLabel.Location = new System.Drawing.Point(5, 0);
+            sourceLabel.Location = new System.Drawing.Point(8, 0);
+            sourceLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             sourceLabel.Name = "sourceLabel";
-            sourceLabel.Size = new System.Drawing.Size(44, 13);
+            sourceLabel.Size = new System.Drawing.Size(64, 20);
             sourceLabel.TabIndex = 9;
             sourceLabel.Text = "Source:";
             // 
             // targetLabel
             // 
             targetLabel.AutoSize = true;
-            targetLabel.Location = new System.Drawing.Point(5, 36);
+            targetLabel.Location = new System.Drawing.Point(8, 55);
+            targetLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             targetLabel.Name = "targetLabel";
-            targetLabel.Size = new System.Drawing.Size(41, 13);
+            targetLabel.Size = new System.Drawing.Size(59, 20);
             targetLabel.TabIndex = 13;
             targetLabel.Text = "Target:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(5, 75);
+            label1.Location = new System.Drawing.Point(8, 115);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(49, 13);
+            label1.Size = new System.Drawing.Size(70, 20);
             label1.TabIndex = 20;
             label1.Text = "Provider:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(394, 0);
+            label2.Location = new System.Drawing.Point(591, 0);
+            label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(33, 13);
+            label2.Size = new System.Drawing.Size(49, 20);
             label2.TabIndex = 22;
             label2.Text = "Sites:";
             this.toolTip1.SetToolTip(label2, "Checked sites will be imported.\r\nEdit Schema label to change target.\r\n");
             // 
             // BatchSizeNumericUpDown
             // 
-            this.BatchSizeNumericUpDown.Location = new System.Drawing.Point(297, 92);
+            this.BatchSizeNumericUpDown.Location = new System.Drawing.Point(446, 142);
+            this.BatchSizeNumericUpDown.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BatchSizeNumericUpDown.Maximum = new decimal(new int[] {
             2000000000,
             0,
@@ -139,7 +146,7 @@ namespace Salient.StackExchange.Import.Gui
             0,
             0});
             this.BatchSizeNumericUpDown.Name = "BatchSizeNumericUpDown";
-            this.BatchSizeNumericUpDown.Size = new System.Drawing.Size(78, 20);
+            this.BatchSizeNumericUpDown.Size = new System.Drawing.Size(117, 26);
             this.BatchSizeNumericUpDown.TabIndex = 5;
             this.toolTip1.SetToolTip(this.BatchSizeNumericUpDown, "Number of rows per transaction.");
             this.BatchSizeNumericUpDown.Value = new decimal(new int[] {
@@ -152,9 +159,10 @@ namespace Salient.StackExchange.Import.Gui
             // 
             this.fullTextCheckBox.Checked = global::Salient.StackExchange.Import.Properties.Settings.Default.FullTextChecked;
             this.fullTextCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Salient.StackExchange.Import.Properties.Settings.Default, "FullTextChecked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.fullTextCheckBox.Location = new System.Drawing.Point(173, 120);
+            this.fullTextCheckBox.Location = new System.Drawing.Point(260, 185);
+            this.fullTextCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fullTextCheckBox.Name = "fullTextCheckBox";
-            this.fullTextCheckBox.Size = new System.Drawing.Size(72, 24);
+            this.fullTextCheckBox.Size = new System.Drawing.Size(108, 37);
             this.fullTextCheckBox.TabIndex = 8;
             this.fullTextCheckBox.Text = "Full Text";
             this.toolTip1.SetToolTip(this.fullTextCheckBox, "Sql Server only - Install full text index on Posts.Body and Posts.Title");
@@ -164,9 +172,10 @@ namespace Salient.StackExchange.Import.Gui
             // 
             this.indicesCheckBox.Checked = global::Salient.StackExchange.Import.Properties.Settings.Default.IndicesChecked;
             this.indicesCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Salient.StackExchange.Import.Properties.Settings.Default, "IndicesChecked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.indicesCheckBox.Location = new System.Drawing.Point(99, 120);
+            this.indicesCheckBox.Location = new System.Drawing.Point(148, 185);
+            this.indicesCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.indicesCheckBox.Name = "indicesCheckBox";
-            this.indicesCheckBox.Size = new System.Drawing.Size(68, 24);
+            this.indicesCheckBox.Size = new System.Drawing.Size(102, 37);
             this.indicesCheckBox.TabIndex = 7;
             this.indicesCheckBox.Text = "Indices";
             this.toolTip1.SetToolTip(this.indicesCheckBox, "Define useful indexes to improve database performance");
@@ -175,9 +184,10 @@ namespace Salient.StackExchange.Import.Gui
             // sourceTextBox
             // 
             this.sourceTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Salient.StackExchange.Import.Properties.Settings.Default, "SourceValue", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.sourceTextBox.Location = new System.Drawing.Point(5, 13);
+            this.sourceTextBox.Location = new System.Drawing.Point(8, 20);
+            this.sourceTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.sourceTextBox.Name = "sourceTextBox";
-            this.sourceTextBox.Size = new System.Drawing.Size(341, 20);
+            this.sourceTextBox.Size = new System.Drawing.Size(510, 26);
             this.sourceTextBox.TabIndex = 1;
             this.sourceTextBox.Text = global::Salient.StackExchange.Import.Properties.Settings.Default.SourceValue;
             this.toolTip1.SetToolTip(this.sourceTextBox, "The path of the decompressed data dump.");
@@ -187,9 +197,10 @@ namespace Salient.StackExchange.Import.Gui
             // 
             this.splitCheckBox.Checked = global::Salient.StackExchange.Import.Properties.Settings.Default.SplitChecked;
             this.splitCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Salient.StackExchange.Import.Properties.Settings.Default, "SplitChecked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.splitCheckBox.Location = new System.Drawing.Point(7, 120);
+            this.splitCheckBox.Location = new System.Drawing.Point(10, 185);
+            this.splitCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.splitCheckBox.Name = "splitCheckBox";
-            this.splitCheckBox.Size = new System.Drawing.Size(86, 24);
+            this.splitCheckBox.Size = new System.Drawing.Size(129, 37);
             this.splitCheckBox.TabIndex = 6;
             this.splitCheckBox.Text = "Create Tags";
             this.toolTip1.SetToolTip(this.splitCheckBox, "Split tags into a separate table");
@@ -198,18 +209,20 @@ namespace Salient.StackExchange.Import.Gui
             // targetTextBox
             // 
             this.targetTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Salient.StackExchange.Import.Properties.Settings.Default, "TargetText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.targetTextBox.Location = new System.Drawing.Point(5, 52);
+            this.targetTextBox.Location = new System.Drawing.Point(8, 80);
+            this.targetTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.targetTextBox.Name = "targetTextBox";
-            this.targetTextBox.Size = new System.Drawing.Size(341, 20);
+            this.targetTextBox.Size = new System.Drawing.Size(510, 26);
             this.targetTextBox.TabIndex = 3;
             this.targetTextBox.Text = global::Salient.StackExchange.Import.Properties.Settings.Default.TargetText;
             this.toolTip1.SetToolTip(this.targetTextBox, resources.GetString("targetTextBox.ToolTip"));
             // 
             // ImportButton
             // 
-            this.ImportButton.Location = new System.Drawing.Point(9, 183);
+            this.ImportButton.Location = new System.Drawing.Point(13, 320);
+            this.ImportButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ImportButton.Name = "ImportButton";
-            this.ImportButton.Size = new System.Drawing.Size(376, 36);
+            this.ImportButton.Size = new System.Drawing.Size(564, 55);
             this.ImportButton.TabIndex = 10;
             this.ImportButton.Text = "Import";
             this.ImportButton.UseVisualStyleBackColor = true;
@@ -220,9 +233,10 @@ namespace Salient.StackExchange.Import.Gui
             this.dbProvidersComboBox.DataSource = this.dbProvidersBindingSource;
             this.dbProvidersComboBox.DisplayMember = "Name";
             this.dbProvidersComboBox.FormattingEnabled = true;
-            this.dbProvidersComboBox.Location = new System.Drawing.Point(5, 91);
+            this.dbProvidersComboBox.Location = new System.Drawing.Point(8, 140);
+            this.dbProvidersComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dbProvidersComboBox.Name = "dbProvidersComboBox";
-            this.dbProvidersComboBox.Size = new System.Drawing.Size(273, 21);
+            this.dbProvidersComboBox.Size = new System.Drawing.Size(408, 28);
             this.dbProvidersComboBox.TabIndex = 4;
             this.dbProvidersComboBox.ValueMember = "Name";
             this.dbProvidersComboBox.SelectedIndexChanged += new System.EventHandler(this.ProvidersSelectedIndexChanged);
@@ -243,9 +257,10 @@ namespace Salient.StackExchange.Import.Gui
             this.CountColumnHeader,
             this.StateColumnHeader,
             this.MessageColumnHeader});
-            this.TasksListView.Location = new System.Drawing.Point(9, 225);
+            this.TasksListView.Location = new System.Drawing.Point(13, 385);
+            this.TasksListView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TasksListView.Name = "TasksListView";
-            this.TasksListView.Size = new System.Drawing.Size(568, 402);
+            this.TasksListView.Size = new System.Drawing.Size(850, 680);
             this.TasksListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.TasksListView.TabIndex = 21;
             this.TasksListView.TabStop = false;
@@ -279,11 +294,13 @@ namespace Salient.StackExchange.Import.Gui
             // 
             // statusStrip1
             // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 639);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 1059);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(584, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 21, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(867, 22);
             this.statusStrip1.TabIndex = 23;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -294,26 +311,28 @@ namespace Salient.StackExchange.Import.Gui
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buildCommandLineToolStripMenuItem,
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(584, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(867, 35);
             this.menuStrip1.TabIndex = 24;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // buildCommandLineToolStripMenuItem
             // 
             this.buildCommandLineToolStripMenuItem.Name = "buildCommandLineToolStripMenuItem";
-            this.buildCommandLineToolStripMenuItem.Size = new System.Drawing.Size(131, 20);
+            this.buildCommandLineToolStripMenuItem.Size = new System.Drawing.Size(188, 29);
             this.buildCommandLineToolStripMenuItem.Text = "Build Command Line";
             this.buildCommandLineToolStripMenuItem.Click += new System.EventHandler(this.buildCommandLineToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(82, 20);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(118, 29);
             this.toolStripMenuItem1.Text = "Help/About";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -324,9 +343,10 @@ namespace Salient.StackExchange.Import.Gui
             this.SiteNameColumnHeader,
             this.SchemaColumnHeader});
             this.listView1.LabelEdit = true;
-            this.listView1.Location = new System.Drawing.Point(391, 13);
+            this.listView1.Location = new System.Drawing.Point(586, 20);
+            this.listView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(163, 131);
+            this.listView1.Size = new System.Drawing.Size(242, 199);
             this.listView1.TabIndex = 9;
             this.toolTip1.SetToolTip(this.listView1, "Checked sites will be imported.\r\nEdit Schema label to change target.\r\n");
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -352,9 +372,10 @@ namespace Salient.StackExchange.Import.Gui
             // 
             this.fkCheckBox.Checked = global::Salient.StackExchange.Import.Properties.Settings.Default.FKChecked;
             this.fkCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Salient.StackExchange.Import.Properties.Settings.Default, "FKChecked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.fkCheckBox.Location = new System.Drawing.Point(251, 120);
+            this.fkCheckBox.Location = new System.Drawing.Point(376, 185);
+            this.fkCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fkCheckBox.Name = "fkCheckBox";
-            this.fkCheckBox.Size = new System.Drawing.Size(92, 24);
+            this.fkCheckBox.Size = new System.Drawing.Size(138, 37);
             this.fkCheckBox.TabIndex = 23;
             this.fkCheckBox.Text = "Foreign Keys";
             this.toolTip1.SetToolTip(this.fkCheckBox, "Sql Server only - Create Foreign Keys  into the schema.");
@@ -362,6 +383,7 @@ namespace Salient.StackExchange.Import.Gui
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.identityCheckBox);
             this.panel1.Controls.Add(this.BrowseTargetButton);
             this.panel1.Controls.Add(this.fkCheckBox);
             this.panel1.Controls.Add(this.listView1);
@@ -378,45 +400,59 @@ namespace Salient.StackExchange.Import.Gui
             this.panel1.Controls.Add(bulkInsertBatchSizeLabel);
             this.panel1.Controls.Add(label1);
             this.panel1.Controls.Add(label2);
-            this.panel1.Location = new System.Drawing.Point(9, 27);
+            this.panel1.Location = new System.Drawing.Point(14, 42);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(568, 150);
+            this.panel1.Size = new System.Drawing.Size(852, 268);
             this.panel1.TabIndex = 26;
             // 
-            // BrowseSourceButton
+            // identityCheckBox
             // 
-            this.BrowseSourceButton.Location = new System.Drawing.Point(351, 12);
-            this.BrowseSourceButton.Name = "BrowseSourceButton";
-            this.BrowseSourceButton.Size = new System.Drawing.Size(25, 23);
-            this.BrowseSourceButton.TabIndex = 2;
-            this.BrowseSourceButton.Text = "...";
-            this.BrowseSourceButton.UseVisualStyleBackColor = true;
-            this.BrowseSourceButton.Click += new System.EventHandler(this.BrowseSourceButton_Click);
+            this.identityCheckBox.AutoSize = true;
+            this.identityCheckBox.Location = new System.Drawing.Point(10, 230);
+            this.identityCheckBox.Name = "identityCheckBox";
+            this.identityCheckBox.Size = new System.Drawing.Size(209, 24);
+            this.identityCheckBox.TabIndex = 25;
+            this.identityCheckBox.Text = "Set Ids as Identity Fields";
+            this.identityCheckBox.UseVisualStyleBackColor = true;
             // 
             // BrowseTargetButton
             // 
-            this.BrowseTargetButton.Location = new System.Drawing.Point(351, 52);
+            this.BrowseTargetButton.Location = new System.Drawing.Point(526, 80);
+            this.BrowseTargetButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BrowseTargetButton.Name = "BrowseTargetButton";
-            this.BrowseTargetButton.Size = new System.Drawing.Size(25, 23);
+            this.BrowseTargetButton.Size = new System.Drawing.Size(38, 35);
             this.BrowseTargetButton.TabIndex = 24;
             this.BrowseTargetButton.Text = "...";
             this.BrowseTargetButton.UseVisualStyleBackColor = true;
             this.BrowseTargetButton.Click += new System.EventHandler(this.BrowseTargetButton_Click);
             // 
+            // BrowseSourceButton
+            // 
+            this.BrowseSourceButton.Location = new System.Drawing.Point(526, 18);
+            this.BrowseSourceButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BrowseSourceButton.Name = "BrowseSourceButton";
+            this.BrowseSourceButton.Size = new System.Drawing.Size(38, 35);
+            this.BrowseSourceButton.TabIndex = 2;
+            this.BrowseSourceButton.Text = "...";
+            this.BrowseSourceButton.UseVisualStyleBackColor = true;
+            this.BrowseSourceButton.Click += new System.EventHandler(this.BrowseSourceButton_Click);
+            // 
             // FrmUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(584, 661);
+            this.ClientSize = new System.Drawing.Size(867, 1081);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ImportButton);
             this.Controls.Add(this.TasksListView);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(600, 1024);
-            this.MinimumSize = new System.Drawing.Size(600, 400);
+            this.MaximumSize = new System.Drawing.Size(889, 1545);
+            this.MinimumSize = new System.Drawing.Size(889, 585);
             this.Name = "FrmUI";
             this.Text = "SODDI v.10";
             this.Load += new System.EventHandler(this.FormLoad);
@@ -465,5 +501,6 @@ namespace Salient.StackExchange.Import.Gui
         private System.Windows.Forms.Button BrowseSourceButton;
         private System.Windows.Forms.CheckBox fkCheckBox;
         private System.Windows.Forms.Button BrowseTargetButton;
+        private System.Windows.Forms.CheckBox identityCheckBox;
     }
 }

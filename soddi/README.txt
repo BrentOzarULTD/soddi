@@ -29,7 +29,7 @@ present a Windows Form interface.
 
 USAGE:
 
-soddi.exe source:"" target:"" [batch:5000] [split] [indices] [fulltext] [[meta] [so] [su] [sf]] [gui]
+soddi.exe source:"" target:"" [batch:5000] [split] [indices] [fulltext] [identity] [[meta] [so] [su] [sf]] [gui]
 
 
 SOURCE          The directory containing the individual site directories.
@@ -58,6 +58,8 @@ SPLIT           Normalize post tags by splitting the concatenated Posts.Tags fie
 INDICES         Enables useful indexes on each table.
 
 FULLTEXT        Enables a full text index on Posts.Body and Posts.Title - SqlServer only.
+
+IDENTITY        Sets ID columns as identity fields in the created database.  Will cause slower import.
 
 BATCH           Number of rows inserted in each transaction. Default 5000.
 

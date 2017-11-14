@@ -43,7 +43,7 @@ namespace Salient.StackExchange.Import.Loaders.MsSql
         public override void CreateBulkInsertTask(string table, EnumerableDataReader reader, ImportTarget target)
         {
             BulkCopyTask task =
-                new BulkCopyTask(new MsSqlBulkCopy(Config.Provider.ConnectionString, SqlBulkCopyOptions.TableLock),
+                new BulkCopyTask(new MsSqlBulkCopy(Config.Provider.ConnectionString, SqlBulkCopyOptions.TableLock | (Config.Identity ? SqlBulkCopyOptions.KeepIdentity : SqlBulkCopyOptions.Default)),
                                  table, reader, target.Name, Config.BatchSize, target.Schema);
 
             Jobs.Find(j => j.Tag == table).Tasks.Add(task);
@@ -105,6 +105,13 @@ namespace Salient.StackExchange.Import.Loaders.MsSql
                     {
                         script = script.Replace("IF 0 = 1--FK", "");
                     }
+
+                    if ((Config.Options & Configuration.Configuration.ImportOptions.Identity) ==
+                        Configuration.Configuration.ImportOptions.Identity)
+                    {
+                        script = script.Replace("/* IDENTITY */", "IDENTITY").Replace("--IDENTITY", string.Empty);
+                    }
+
                     cmd.CommandText = script;
 
                     cmd.ExecuteNonQuery();

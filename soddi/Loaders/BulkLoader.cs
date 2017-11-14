@@ -106,9 +106,18 @@ namespace Salient.StackExchange.Import.Loaders
 #if NOTHREAD
                 job.Process();
 #else
-                Thread t = new Thread(job.Process);
-                threads.Add(t);
-                t.Start();
+                if (config.Identity)
+                {
+                    // We can have only one job running at a time when each Id column
+                    // is an identity column.
+                    job.Process();
+                }
+                else
+                {
+                    Thread t = new Thread(job.Process);
+                    threads.Add(t);
+                    t.Start();
+                }
 #endif
             }
 

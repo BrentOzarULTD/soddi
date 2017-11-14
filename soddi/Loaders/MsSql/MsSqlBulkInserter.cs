@@ -11,6 +11,7 @@
 
 #region
 
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -21,10 +22,13 @@ namespace Salient.StackExchange.Import.Loaders.MsSql
     public class MsSqlBulkCopy : BulkCopyBase
     {
         private readonly SqlBulkCopy _inner;
-
+        private readonly string _connectionString;
+        private readonly bool _identity;
 
         public MsSqlBulkCopy(string connectionString, SqlBulkCopyOptions options)
         {
+            _connectionString = connectionString;
+            _identity = options.HasFlag(SqlBulkCopyOptions.KeepIdentity);
             _inner = new SqlBulkCopy(connectionString, options);
             _inner.SqlRowsCopied += (s, e) =>
                 {
@@ -69,7 +73,47 @@ namespace Salient.StackExchange.Import.Loaders.MsSql
 
         public override void WriteToServer(IDataReader reader)
         {
-            _inner.WriteToServer(reader);
+            if (_identity)
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandType = CommandType.Text;
+                        command.CommandText = $"SET IDENTITY_INSERT {DestinationTableName} ON";
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            try
+            {
+                _inner.WriteToServer(reader);
+            }
+            finally
+            {
+                if (_identity)
+                {
+                    using (var connection = new SqlConnection(_connectionString))
+                    {
+                        connection.Open();
+                        using (var command = connection.CreateCommand())
+                        {
+                            command.CommandType = CommandType.Text;
+                            command.CommandText = $"SET IDENTITY_INSERT {DestinationTableName} OFF";
+                            command.ExecuteNonQuery();
+                        }
+
+                        using (var command = connection.CreateCommand())
+                        {
+                            command.CommandType = CommandType.Text;
+                            command.CommandText =
+                                $"DBCC CHECKIDENT('{DestinationTableName.Replace("[", string.Empty).Replace("]", string.Empty)}', RESEED)";
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
         }
     }
 }

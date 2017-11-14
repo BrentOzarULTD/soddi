@@ -91,6 +91,10 @@ namespace Salient.StackExchange.Import.Loaders.SQLite
                     {
                         script = script.Replace("-- INDICES", "");
                     }
+                    if (Config.Identity)
+                    {
+                        script = script.Replace("/* IDENTITY */", "AUTOINCREMENT");
+                    }
                     cmd.CommandText = script;
                     cmd.ExecuteNonQuery();
                 }

@@ -66,6 +66,24 @@ namespace Salient.StackExchange.Import.Loaders.MySql
             using (MySqlConnection connection = new MySqlConnection(_source))
             {
                 connection.Open();
+                string oldMode;
+                using (var modeCommand = connection.CreateCommand())
+                {
+                    modeCommand.CommandText = "SELECT @@SESSION.sql_mode";
+                    oldMode = modeCommand.ExecuteScalar() as string;
+                }
+
+                using (var setModeCommand = connection.CreateCommand())
+                {
+                    var newMode = string.IsNullOrWhiteSpace(oldMode)
+                        ? "NO_AUTO_VALUE_ON_ZERO"
+                        : $"{oldMode} NO_AUTO_VALUE_ON_ZERO";
+
+                    setModeCommand.CommandText = "SET SESSION sql_mode = @NewMode";
+                    setModeCommand.Parameters.AddWithValue("@NewMode", newMode);
+                    setModeCommand.ExecuteNonQuery();
+                }
+
                 _command.Connection = connection;
                 _command.Prepare();
 

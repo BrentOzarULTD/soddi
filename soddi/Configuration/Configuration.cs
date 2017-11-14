@@ -40,7 +40,8 @@ namespace Salient.StackExchange.Import.Configuration
             Split = 4,
             GUI = 8,
             FieldCount = 16,
-            ForeignKeys = 32
+            ForeignKeys = 32,
+            Identity = 64
         }
 
         #endregion
@@ -126,6 +127,17 @@ namespace Salient.StackExchange.Import.Configuration
             }
         }
 
+        public bool Identity
+        {
+            get { return (Options & ImportOptions.Identity) == ImportOptions.Identity; }
+            set
+            {
+                Options = value
+                    ? Options | ImportOptions.Identity
+                    : Options & (ImportOptions) (Options - ImportOptions.Identity);
+            }
+        }
+
         internal ImportOptions Options { get; set; }
 
         public DbProviderInfo Provider { get; set; }
@@ -166,10 +178,11 @@ namespace Salient.StackExchange.Import.Configuration
 
 
                 string batch = BatchSize != DefaultBatchSize ? " batch:" + BatchSize : "";
-                string cmdLine = string.Format("{7} source:\"{0}\" target:\"{1}\"{2}{3}{4}{5} {6}", Source,
+                string cmdLine = string.Format("{7} source:\"{0}\" target:\"{1}\"{2}{3}{4}{5}{8} {6}", Source,
                                                csb.ConnectionString, batch, Indices ? " indices" : "",
                                                FullText ? " fulltext" : "", Split ? " split" : "", targets,
-                                               Path.GetFileName(Assembly.GetExecutingAssembly().Location));
+                                               Path.GetFileName(Assembly.GetExecutingAssembly().Location),
+                                               Identity ? " identity" : string.Empty);
                 return cmdLine;
             }
             else
@@ -275,6 +288,9 @@ namespace Salient.StackExchange.Import.Configuration
                         break;
                     case "foreignkeys":
                         Options = Options | ImportOptions.ForeignKeys;
+                        break;
+                    case "identity":
+                        Options = Options | ImportOptions.Identity;
                         break;
                     default:
                         unparsed.Add(args[i].Trim());

@@ -74,13 +74,13 @@ SET quoted_identifier  ON
 SET ansi_padding  ON
 
 CREATE TABLE DUMMY.[LinkTypes] (
-  Id INT NOT NULL,
+  Id INT /* IDENTITY */ NOT NULL,
   [Type] VARCHAR(50) NOT NULL,
   CONSTRAINT PK_LinkTypes__Id PRIMARY KEY CLUSTERED (Id ASC) 
 );
 
 CREATE TABLE DUMMY.[VoteTypes] (
-  [Id]   [INT]    NOT NULL,
+  [Id]   [INT] /* IDENTITY */    NOT NULL,
   [Name] [VARCHAR](50)    NOT NULL ,
   CONSTRAINT [PK_VoteType__Id] PRIMARY KEY CLUSTERED ( [Id] ASC ) ON [PRIMARY]
   )ON [PRIMARY]
@@ -89,7 +89,7 @@ SET ansi_nulls  ON
 SET quoted_identifier  ON
 
 CREATE TABLE DUMMY.[PostTypes] (
-  [Id]   [INT]    NOT NULL,
+  [Id]   [INT] /* IDENTITY */    NOT NULL,
   [Type] [NVARCHAR](50)    NOT NULL
   , CONSTRAINT [PK_PostTypes__Id] PRIMARY KEY CLUSTERED ( [Id] ASC ) ON [PRIMARY]
   ) ON [PRIMARY]
@@ -100,13 +100,14 @@ IF 0 = 1--SPLIT
     SET quoted_identifier  ON
 
     CREATE TABLE DUMMY.[PostTags] (
-      [PostId] [INT]    NOT NULL,
+      [PostId] [INT] /* IDENTITY */    NOT NULL,
       [Tag]    [NVARCHAR](50)    NOT NULL
       , CONSTRAINT [PK_PostTags__PostId_Tag] PRIMARY KEY CLUSTERED ( [PostId] ASC,[Tag] ASC ) ON [PRIMARY]
       ) ON [PRIMARY]
   
   END
 
+--IDENTITY SET IDENTITY_INSERT [DUMMY].[VoteTypes] ON
 INSERT DUMMY.[VoteTypes] ([Id], [Name]) VALUES(1, N'AcceptedByOriginator')
 INSERT DUMMY.[VoteTypes] ([Id], [Name]) VALUES(2, N'UpMod')
 INSERT DUMMY.[VoteTypes] ([Id], [Name]) VALUES(3, N'DownMod')
@@ -122,6 +123,9 @@ INSERT DUMMY.[VoteTypes] ([Id], [Name]) VALUES(12,N'Spam')
 INSERT DUMMY.[VoteTypes] ([Id], [Name]) VALUES(13,N'InformModerator')
 INSERT DUMMY.[VoteTypes] ([Id], [Name]) VALUES(15,N'ModeratorReview')
 INSERT DUMMY.[VoteTypes] ([Id], [Name]) VALUES(16,N'ApproveEditSuggestion')
+--IDENTITY SET IDENTITY_INSERT [DUMMY].[VoteTypes] OFF
+--IDENTITY DBCC CHECKIDENT('DUMMY.VoteTypes', RESEED)
+--IDENTITY SET IDENTITY_INSERT [DUMMY].[PostTypes] ON
 INSERT DUMMY.[PostTypes] ([Id], [Type]) VALUES(1, N'Question') 
 INSERT DUMMY.[PostTypes] ([Id], [Type]) VALUES(2, N'Answer') 
 INSERT DUMMY.[PostTypes] ([Id], [Type]) VALUES(3, N'Wiki') 
@@ -130,8 +134,13 @@ INSERT DUMMY.[PostTypes] ([Id], [Type]) VALUES(5, N'TagWiki')
 INSERT DUMMY.[PostTypes] ([Id], [Type]) VALUES(6, N'ModeratorNomination') 
 INSERT DUMMY.[PostTypes] ([Id], [Type]) VALUES(7, N'WikiPlaceholder') 
 INSERT DUMMY.[PostTypes] ([Id], [Type]) VALUES(8, N'PrivilegeWiki') 
+--IDENTITY SET IDENTITY_INSERT [DUMMY].[PostTypes] OFF
+--IDENTITY DBCC CHECKIDENT('DUMMY.PostTypes', RESEED)
+--IDENTITY SET IDENTITY_INSERT [DUMMY].[LinkTypes] ON
 INSERT DUMMY.[LinkTypes] ([Id], [Type]) VALUES(1, N'Linked')
 INSERT DUMMY.[LinkTypes] ([Id], [Type]) VALUES(3, N'Duplicate')
+--IDENTITY SET IDENTITY_INSERT [DUMMY].[LinkTypes] OFF
+--IDENTITY DBCC CHECKIDENT('DUMMY.LinkTypes', RESEED)
 
 
 IF 0 = 1--FULLTEXT
@@ -153,7 +162,7 @@ SET ansi_nulls  ON
 SET quoted_identifier  ON
 
 CREATE TABLE DUMMY.[Votes] (
-  [Id]           [INT]    NOT NULL,
+  [Id]           [INT]    /* IDENTITY */ NOT NULL,
   [PostId]       [INT]    NOT NULL,
   [UserId]       [INT]    NULL,
   [BountyAmount] [INT]    NULL,
@@ -178,7 +187,7 @@ SET ansi_nulls  ON
 SET quoted_identifier  ON
 
 CREATE TABLE DUMMY.[Users] (
-  [Id]             [INT]    NOT NULL,
+  [Id]             [INT]    /* IDENTITY */ NOT NULL,
   [AboutMe]        [NVARCHAR](MAX)    NULL,
   [Age]            [INT]    NULL,
   [CreationDate]   [DATETIME]    NOT NULL,
@@ -207,7 +216,7 @@ SET ansi_nulls  ON
 SET quoted_identifier  ON
 
 CREATE TABLE DUMMY.[Posts] (
-  [Id]                    [INT]    NOT NULL,
+  [Id]                    [INT]    /* IDENTITY */ NOT NULL,
   [AcceptedAnswerId]      [INT]    NULL,
   [AnswerCount]           [INT]    NULL,
   [Body]                  [NVARCHAR](MAX)    NOT NULL,
@@ -289,7 +298,7 @@ SET ansi_nulls  ON
 SET quoted_identifier  ON
 
 CREATE TABLE DUMMY.[Comments] (
-  [Id]           [INT]    NOT NULL,
+  [Id]           [INT]    /* IDENTITY */ NOT NULL,
   [CreationDate] [DATETIME]    NOT NULL,
   [PostId]       [INT]    NOT NULL,
   [Score]        [INT]    NULL,
@@ -315,7 +324,7 @@ SET ansi_nulls  ON
 SET quoted_identifier  ON
 
 CREATE TABLE DUMMY.[Badges] (
-  [Id]     [INT]    NOT NULL,
+  [Id]     [INT]    /* IDENTITY */ NOT NULL,
   [Name]   [NVARCHAR](40)    NOT NULL,
   [UserId] [INT]    NOT NULL,
   [Date]   [DATETIME]    NOT NULL
@@ -323,7 +332,7 @@ CREATE TABLE DUMMY.[Badges] (
   ) ON [PRIMARY]
 
 CREATE TABLE DUMMY.[PostLinks] (
-  Id INT NOT NULL,
+  Id INT /* IDENTITY */ NOT NULL,
   CreationDate DATETIME NOT NULL,
   PostId INT NOT NULL,
   RelatedPostId INT NOT NULL,
