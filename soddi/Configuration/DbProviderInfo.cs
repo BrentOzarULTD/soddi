@@ -31,6 +31,16 @@ namespace Salient.StackExchange.Import.Configuration
             Factory = DbProviderFactories.GetFactory(prov);
         }
 
+        public DbProviderInfo(string name, string description, string invariantName, string assemblyQualifiedName,
+            DbProviderFactory factory)
+        {
+            Name = name;
+            Description = description;
+            InvariantName = invariantName;
+            AssemblyQualifiedName = assemblyQualifiedName;
+            Factory = factory;
+        }
+
         public string Name { get; set; }
         public string Description { get; set; }
         public string InvariantName { get; set; }

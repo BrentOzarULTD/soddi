@@ -21,6 +21,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Reflection;
 using Salient.StackExchange.Import.Loaders;
+using Salient.StackExchange.Import.Loaders.SQLite;
 
 #endregion
 
@@ -55,6 +56,12 @@ namespace Salient.StackExchange.Import.Configuration
 
                     Console.WriteLine("Error adding provider {0}:\r\n{1}",invariant,ex.Message);
                 }
+            }
+            if (!this.Any(pi => pi.BulkInsertType == typeof(SQLiteBulkInserter)))
+            {
+                Add(new DbProviderInfo("System.Data.SQLite", "SQLite ADO.Net Provider", "System.Data.SQLite",
+                    typeof(System.Data.SQLite.SQLiteFactory).AssemblyQualifiedName,
+                    System.Data.SQLite.SQLiteFactory.Instance) { BulkInsertType = typeof(SQLiteInserter)});
             }
         }
 
