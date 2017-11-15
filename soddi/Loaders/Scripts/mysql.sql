@@ -101,6 +101,21 @@ DEFAULT CHARACTER SET = latin1;
 -- INDICES CREATE INDEX `IX_Comments_Id_PostId` ON DUMMY.`comments` (`Id` ASC, `PostId` ASC) ;
 -- INDICES CREATE INDEX `IX_Comments_Id_UserId` ON DUMMY.`comments` (`Id` ASC, `UserId` ASC) ;
 
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
+--  Table DUMMY.`postlinks`
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
+DROP TABLE IF EXISTS DUMMY.`postlinks` ;
+
+CREATE  TABLE IF NOT EXISTS DUMMY.`postlinks` (
+  `Id` INT(11) NOT NULL /* IDENTITY */,
+  `CreationDate` DATETIME NOT NULL,
+  `PostId` INT(11) NOT NULL,
+  `RelatedPostId` INT(11) NOT NULL,
+  `LinkTypeId` INT(11) NOT NULL,
+  PRIMARY KEY (`Id`)
+  )
+ENGINE = MyISAM
+DEFAULT CHARACTER SET = latin1;
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
 --  Table DUMMY.`posts`

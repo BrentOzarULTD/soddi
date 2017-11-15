@@ -99,6 +99,13 @@ CREATE TABLE [Badges] (
     [UserId] int NOT NULL,
     [Date] datetime NOT NULL
 );
+CREATE TABLE [PostLinks] (
+	[Id] INTEGER PRIMARY KEY /* IDENTITY */ NOT NULL,
+	[CreationDate] datetime NOT NULL,
+	[PostId] int NOT NULL,
+	[RelatedPostId] int NOT NULL,
+	[LinkTypeId] int NOT NULL
+);
 
 -- INDICES CREATE INDEX [IX_Votes_Id_PostId] ON [Votes] ([Id], [PostId]);
 -- INDICES CREATE INDEX [IX_Votes_VoteTypeId] ON [Votes] ([VoteTypeId]);

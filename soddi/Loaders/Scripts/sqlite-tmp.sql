@@ -84,4 +84,13 @@ DROP TABLE IF EXISTS [PostTags_tmp];
 CREATE TABLE [PostTags_tmp] (
     [PostId] int NOT NULL,
     [Tag] nvarchar(50) NOT NULL);
+
+DROP TABLE IF EXISTS [PostLinks_tmp];
+CREATE TABLE [PostLinks_tmp] (
+	[Id] int NOT NULL,
+	[CreationDate] datetime NOT NULL,
+	[PostId] int NOT NULL,
+	[RelatedPostId] int NOT NULL,
+	[LinkTypeId] int NOT NULL
+);
 COMMIT;
