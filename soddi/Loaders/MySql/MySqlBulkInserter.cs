@@ -77,7 +77,7 @@ namespace Salient.StackExchange.Import.Loaders.MySql
                 {
                     var newMode = string.IsNullOrWhiteSpace(oldMode)
                         ? "NO_AUTO_VALUE_ON_ZERO"
-                        : $"{oldMode} NO_AUTO_VALUE_ON_ZERO";
+                        : $"{oldMode},NO_AUTO_VALUE_ON_ZERO";
 
                     setModeCommand.CommandText = "SET SESSION sql_mode = @NewMode";
                     setModeCommand.Parameters.AddWithValue("@NewMode", newMode);
