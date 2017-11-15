@@ -106,6 +106,13 @@ CREATE TABLE [PostLinks] (
 	[RelatedPostId] int NOT NULL,
 	[LinkTypeId] int NOT NULL
 );
+CREATE TABLE [Tags] (
+    [Id] INTEGER PRIMARY KEY /* IDENTITY */ NOT NULL,
+	[TagName] nvarchar(150) NOT NULL,
+	[Count] int NOT NULL,
+	[ExcerptPostId] int NOT NULL,
+	[WikiPostId] int NOT NULL
+);
 
 -- INDICES CREATE INDEX [IX_Votes_Id_PostId] ON [Votes] ([Id], [PostId]);
 -- INDICES CREATE INDEX [IX_Votes_VoteTypeId] ON [Votes] ([VoteTypeId]);

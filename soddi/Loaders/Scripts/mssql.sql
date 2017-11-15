@@ -47,6 +47,8 @@ IF EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'DUMMY.[PostLi
   DROP TABLE DUMMY.[PostLinks];
 IF EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'DUMMY.[LinkTypes]') AND type IN (N'U'))
   DROP TABLE DUMMY.[LinkTypes];
+IF EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'DUMMY.[Tags]') AND type IN (N'U'))
+  DROP TABLE DUMMY.[Tags];
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'DUMMY.[Badges]') AND type in (N'U'))
 DROP TABLE DUMMY.[Badges]
@@ -68,6 +70,8 @@ IF EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'DUMMY.[PostLi
 DROP TABLE DUMMY.[PostLinks]
 IF EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'DUMMY.[LinkTypes]') AND type IN (N'U'))
 DROP TABLE DUMMY.[LinkTypes]
+IF EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'DUMMY.[Tags]') AND type IN (N'U'))
+DROP TABLE DUMMY.[Tags];
 
 SET ansi_nulls  ON
 SET quoted_identifier  ON
@@ -339,6 +343,15 @@ CREATE TABLE DUMMY.[PostLinks] (
   LinkTypeId INT NOT NULL,
   CONSTRAINT [PK_PostLinks__Id] PRIMARY KEY CLUSTERED ([Id] ASC)
 ) 
+
+CREATE TABLE DUMMY.[Tags] (
+  [Id] INT /* IDENTITY */ NOT NULL,
+  [TagName] NVARCHAR(150) NOT NULL,
+  [Count] INT NOT NULL,
+  [ExcerptPostId] INT NOT NULL,
+  [WikiPostId] INT NOT NULL,
+  CONSTRAINT [PK_Tags__Id] PRIMARY KEY CLUSTERED ([Id] ASC) ON [PRIMARY]
+) ON [PRIMARY]
 
 IF 0 = 1-- INDICES
   BEGIN

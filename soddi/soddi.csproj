@@ -156,6 +156,7 @@
     <Compile Include="TableTypes\PostLinks.cs" />
     <Compile Include="TableTypes\Posts.cs" />
     <Compile Include="TableTypes\PostTags.cs" />
+    <Compile Include="TableTypes\Tags.cs" />
     <Compile Include="TableTypes\Users.cs" />
     <Compile Include="TableTypes\Votes.cs" />
     <Compile Include="Tools\Common.cs" />

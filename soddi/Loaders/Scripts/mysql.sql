@@ -154,6 +154,21 @@ DEFAULT CHARACTER SET = latin1;
 -- INDICES CREATE INDEX `IX_Posts_Id_PostTypeId` ON DUMMY.`posts` (`Id` ASC, `PostTypeId` ASC) ;
 -- INDICES CREATE INDEX `IX_Posts_PostType` ON DUMMY.`posts` (`PostTypeId` ASC) ;
 
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
+--  Table DUMMY.`tags`
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
+DROP TABLE IF EXISTS DUMMY.`tags` ;
+
+CREATE  TABLE IF NOT EXISTS DUMMY.`tags` (
+  `Id` INT(11) NOT NULL /* IDENTITY */,
+  `TagName` VARCHAR(150) CHARACTER SET 'utf8' NOT NULL,
+  `Count` INT(11) NOT NULL,
+  `ExcerptPostId` INT(11) NOT NULL,
+  `WikiPostId` INT(11) NOT NULL,
+  PRIMARY KEY (`Id`)
+  )
+ENGINE = MyISAM
+DEFAULT CHARACTER SET = latin1;
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
 --  Table DUMMY.`users`

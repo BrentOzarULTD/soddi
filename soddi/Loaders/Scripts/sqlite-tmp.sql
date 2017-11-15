@@ -93,4 +93,14 @@ CREATE TABLE [PostLinks_tmp] (
 	[RelatedPostId] int NOT NULL,
 	[LinkTypeId] int NOT NULL
 );
+
+DROP TABLE IF EXISTS [Tags_tmp];
+CREATE TABLE [Tags_tmp] (
+    [Id] int NOT NULL,
+	[TagName] nvarchar(150) NOT NULL,
+	[Count] int NOT NULL,
+	[ExcerptPostId] int NOT NULL,
+	[WikiPostId] int NOT NULL
+);
+
 COMMIT;
