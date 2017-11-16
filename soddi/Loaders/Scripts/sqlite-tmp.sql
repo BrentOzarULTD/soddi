@@ -21,6 +21,19 @@ CREATE TABLE [Comments_tmp] (
     [UserId] int
 );
 
+DROP TABLE IF EXISTS [PostHistory_tmp];
+CREATE TABLE [PostHistory_tmp] (
+  [Id] INT NOT NULL,
+  [PostHistoryTypeId] INT NOT NULL,
+  [PostId] INT NOT NULL,
+  [RevisionGUID] CHAR(36) NOT NULL,
+  [CreationDate] DATETIME NOT NULL,
+  [UserId] INT NULL,
+  [UserDisplayName] VARCHAR(40) NULL,
+  [Comment] TEXT NULL,
+  [Text] TEXT NULL
+);
+
 DROP TABLE IF EXISTS [Posts_tmp];
 CREATE TABLE [Posts_tmp] (
     [Id] int NOT NULL,

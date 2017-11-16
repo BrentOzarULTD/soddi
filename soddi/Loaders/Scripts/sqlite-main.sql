@@ -22,6 +22,10 @@ CREATE TABLE [PostTags] (
     ,CONSTRAINT [PK_PostTags] PRIMARY KEY ([PostId], [Tag]
     )
 );
+CREATE TABLE [PostHistoryTypes] (
+	[Id] INTEGER PRIMARY KEY /* IDENTITY */ NOT NULL,
+	[Type] nvarchar(50) NOT NULL
+);
 
 
 INSERT INTO VoteTypes (Id, Name) VALUES(1, 'AcceptedByOriginator');
@@ -39,6 +43,45 @@ INSERT INTO VoteTypes (Id, Name) VALUES(12,'Spam');
 INSERT INTO VoteTypes (Id, Name) VALUES(13,'InformModerator');
 INSERT INTO PostTypes (Id, Type) VALUES(1, 'Question'); 
 INSERT INTO PostTypes (Id, Type) VALUES(2, 'Answer'); 
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(1, 'InitialTitle');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(2, 'InitialBody');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(3, 'InitialTags');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(4, 'EditTitle');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(5, 'EditBody');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(6, 'EditTags');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(7, 'RollbackTitle');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(8, 'RollbackBody');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(9, 'RollbackTags');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(10, 'PostClosed');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(11, 'PostReopened');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(12, 'PostDeleted');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(13, 'PostUndeleted');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(14, 'PostLocked');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(15, 'PostUnlocked');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(16, 'CommunityOwned');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(17, 'PostMigrated');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(18, 'QuestionMerged');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(19, 'QuestionProtected');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(20, 'QuestionUnprotected');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(21, 'PostDisassociated');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(22, 'QuestionUnmerged');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(23, 'UnknownDevRelatedEvent');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(24, 'SuggestedEditApplied');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(25, 'PostTweeted');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(26, 'VoteNullificationByDev');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(27, 'PostUnmigrated');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(28, 'UnknownSuggestionEvent');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(29, 'UnknownModeratorEvent');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(30, 'UnknownEvent');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(31, 'CommentDiscussionMovedToChat');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(33, 'PostNoticeAdded');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(34, 'PostNoticeRemoved');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(35, 'PostMigratedAway');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(36, 'PostMigratedHere');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(37, 'PostMergeSource');
+INSERT INTO PostHistoryTypes (Id, Type) VALUES(38, 'PostMergeDestination');
+
+
 
 CREATE TABLE [Votes] (
     [Id] INTEGER PRIMARY KEY /* IDENTITY */ NOT NULL,
@@ -105,6 +148,17 @@ CREATE TABLE [PostLinks] (
 	[PostId] int NOT NULL,
 	[RelatedPostId] int NOT NULL,
 	[LinkTypeId] int NOT NULL
+);
+CREATE TABLE [PostHistory] (
+  [Id] INTEGER PRIMARY KEY /* IDENTITY */ NOT NULL,
+  [PostHistoryTypeId] INT NOT NULL,
+  [PostId] INT NOT NULL,
+  [RevisionGUID] CHAR(36) NOT NULL,
+  [CreationDate] DATETIME NOT NULL,
+  [UserId] INT NULL,
+  [UserDisplayName] VARCHAR(40) NULL,
+  [Comment] TEXT NULL,
+  [Text] TEXT NULL
 );
 CREATE TABLE [Tags] (
     [Id] INTEGER PRIMARY KEY /* IDENTITY */ NOT NULL,

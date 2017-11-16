@@ -46,6 +46,20 @@ ENGINE = MyISAM
 DEFAULT CHARACTER SET = latin1;
 
 
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
+--  Table DUMMY.`posthistorytypes`
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
+DROP TABLE IF EXISTS DUMMY.`posthistorytypes` ;
+
+CREATE  TABLE IF NOT EXISTS DUMMY.`posthistorytypes` (
+  `Id` INT(11) NOT NULL /* IDENTITY */,
+  `Type` VARCHAR(50) CHARACTER SET 'utf8' NOT NULL,
+  PRIMARY KEY (`Id`)
+)
+ENGINE = MyISAM
+DEFAULT CHARACTER SET = latin1;
+
+
 
 INSERT DUMMY.`VoteTypes` (`Id`, `Name`) VALUES(1, 'AcceptedByOriginator');
 INSERT DUMMY.`VoteTypes` (`Id`, `Name`) VALUES(2, 'UpMod');
@@ -62,6 +76,43 @@ INSERT DUMMY.`VoteTypes` (`Id`, `Name`) VALUES(12,'Spam');
 INSERT DUMMY.`VoteTypes` (`Id`, `Name`) VALUES(13,'InformModerator');
 INSERT DUMMY.`PostTypes` (`Id`, `Type`) VALUES(1, 'Question') ;
 INSERT DUMMY.`PostTypes` (`Id`, `Type`) VALUES(2, 'Answer') ;
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(1, 'InitialTitle');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(2, 'InitialBody');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(3, 'InitialTags');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(4, 'EditTitle');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(5, 'EditBody');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(6, 'EditTags');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(7, 'RollbackTitle');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(8, 'RollbackBody');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(9, 'RollbackTags');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(10, 'PostClosed');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(11, 'PostReopened');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(12, 'PostDeleted');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(13, 'PostUndeleted');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(14, 'PostLocked');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(15, 'PostUnlocked');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(16, 'CommunityOwned');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(17, 'PostMigrated');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(18, 'QuestionMerged');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(19, 'QuestionProtected');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(20, 'QuestionUnprotected');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(21, 'PostDisassociated');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(22, 'QuestionUnmerged');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(23, 'UnknownDevRelatedEvent');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(24, 'SuggestedEditApplied');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(25, 'PostTweeted');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(26, 'VoteNullificationByDev');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(27, 'PostUnmigrated');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(28, 'UnknownSuggestionEvent');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(29, 'UnknownModeratorEvent');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(30, 'UnknownEvent');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(31, 'CommentDiscussionMovedToChat');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(33, 'PostNoticeAdded');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(34, 'PostNoticeRemoved');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(35, 'PostMigratedAway');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(36, 'PostMigratedHere');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(37, 'PostMergeSource');
+INSERT DUMMY.`PostHistoryTypes` (`Id`, `Type`) VALUES(38, 'PostMergeDestination');
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
 --  Table DUMMY.`badges`
@@ -100,6 +151,26 @@ DEFAULT CHARACTER SET = latin1;
 
 -- INDICES CREATE INDEX `IX_Comments_Id_PostId` ON DUMMY.`comments` (`Id` ASC, `PostId` ASC) ;
 -- INDICES CREATE INDEX `IX_Comments_Id_UserId` ON DUMMY.`comments` (`Id` ASC, `UserId` ASC) ;
+
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
+--  Table DUMMY.`posthistory`
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
+DROP TABLE IF EXISTS DUMMY.`posthistory` ;
+
+CREATE  TABLE IF NOT EXISTS DUMMY.`posthistory` (
+  `Id` INT(11) NOT NULL /* IDENTITY */,
+  `PostHistoryTypeId` INT(11) NOT NULL,
+  `PostId` INT(11) NOT NULL,
+  `RevisionGUID` CHAR(36) NOT NULL,
+  `CreationDate` DATETIME NOT NULL,
+  `UserId` INT NULL,
+  `UserDisplayName` VARCHAR(40) CHARACTER SET 'utf8' NULL,
+  `Comment` TEXT CHARACTER SET 'utf8' NULL,
+  `Text` TEXT CHARACTER SET 'utf8' NULL,
+  PRIMARY KEY (`Id`)
+)
+ENGINE = MyISAM
+DEFAULT CHARACTER SET = latin1;
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
 --  Table DUMMY.`postlinks`

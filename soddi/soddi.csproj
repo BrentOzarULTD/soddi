@@ -153,6 +153,7 @@
     <Compile Include="TableTypes\Comments.cs" />
     <Compile Include="Loaders\ISoBase.cs" />
     <Compile Include="Loaders\LoaderAttribute.cs" />
+    <Compile Include="TableTypes\PostHistory.cs" />
     <Compile Include="TableTypes\PostLinks.cs" />
     <Compile Include="TableTypes\Posts.cs" />
     <Compile Include="TableTypes\PostTags.cs" />

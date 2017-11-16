@@ -26,6 +26,12 @@ IF (OBJECT_ID('DUMMY.FK_Votes_UserId__Users_Id', 'F') IS NOT NULL)
   ALTER TABLE DUMMY.Votes DROP CONSTRAINT FK_Votes_UserId__Users_Id;
 IF (OBJECT_ID('DUMMY.FK_Votes_UserId__VoteTypes_Id', 'F') IS NOT NULL)
   ALTER TABLE DUMMY.Votes DROP CONSTRAINT FK_Votes_UserId__VoteTypes_Id;
+IF (OBJECT_ID('DUMMY.FK_PostHistory_PostId__Posts_Id', 'F') IS NOT NULL)
+  ALTER TABLE DUMMY.PostHistory DROP CONSTRAINT FK_PostHistory_PostId__Posts_Id;
+IF (OBJECT_ID('DUMMY.FK_PostHistory_UserId__Users_Id', 'F') IS NOT NULL)
+  ALTER TABLE DUMMY.PostHistory DROP CONSTRAINT FK_PostHistory_UserId__Users_Id;
+IF (OBJECT_ID('DUMMY.FK_PostHistory_PostHistoryTypeId__PostHistoryTypes_Id', 'F') IS NOT NULL)
+  ALTER TABLE DUMMY.PostHistory DROP CONSTRAINT FK_PostHistory_PostHistoryTypeId__PostHistoryTypes_Id;
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'DUMMY.[Badges]') AND type in (N'U'))
   DROP TABLE DUMMY.[Badges];
@@ -49,6 +55,10 @@ IF EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'DUMMY.[LinkTy
   DROP TABLE DUMMY.[LinkTypes];
 IF EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'DUMMY.[Tags]') AND type IN (N'U'))
   DROP TABLE DUMMY.[Tags];
+IF EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'DUMMY.[PostHistory]') AND type in (N'U'))
+  DROP TABLE DUMMY.[PostHistory];
+IF EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'DUMMY.[PostHistoryTypes]') AND type IN (N'U'))
+  DROP TABLE DUMMY.[PostHistoryTypes];
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'DUMMY.[Badges]') AND type in (N'U'))
 DROP TABLE DUMMY.[Badges]
@@ -72,6 +82,10 @@ IF EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'DUMMY.[LinkTy
 DROP TABLE DUMMY.[LinkTypes]
 IF EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'DUMMY.[Tags]') AND type IN (N'U'))
 DROP TABLE DUMMY.[Tags];
+IF EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'DUMMY.[PostHistory]') AND type in (N'U'))
+DROP TABLE DUMMY.[PostHistory];
+IF EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'DUMMY.[PostHistoryTypes]') AND type IN (N'U'))
+DROP TABLE DUMMY.[PostHistoryTypes];
 
 SET ansi_nulls  ON
 SET quoted_identifier  ON
@@ -97,6 +111,12 @@ CREATE TABLE DUMMY.[PostTypes] (
   [Type] [NVARCHAR](50)    NOT NULL
   , CONSTRAINT [PK_PostTypes__Id] PRIMARY KEY CLUSTERED ( [Id] ASC ) ON [PRIMARY]
   ) ON [PRIMARY]
+
+CREATE TABLE DUMMY.[PostHistoryTypes] (
+  [Id] INT /* IDENTITY */ NOT NULL,
+  [Type] NVARCHAR(50) NOT NULL,
+  CONSTRAINT [PK_PostHistoryTypes__Id] PRIMARY KEY CLUSTERED ( [Id] ASC ) ON [PRIMARY]
+) ON [PRIMARY]
 
 IF 0 = 1--SPLIT
   BEGIN
@@ -145,7 +165,46 @@ INSERT DUMMY.[LinkTypes] ([Id], [Type]) VALUES(1, N'Linked')
 INSERT DUMMY.[LinkTypes] ([Id], [Type]) VALUES(3, N'Duplicate')
 --IDENTITY SET IDENTITY_INSERT [DUMMY].[LinkTypes] OFF
 --IDENTITY DBCC CHECKIDENT('DUMMY.LinkTypes', RESEED)
-
+--IDENTITY SET IDENTITY_INSERT [DUMMY].[PostHistoryTypes] ON
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(1, N'InitialTitle')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(2, N'InitialBody')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(3, N'InitialTags')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(4, N'EditTitle')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(5, N'EditBody')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(6, N'EditTags')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(7, N'RollbackTitle')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(8, N'RollbackBody')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(9, N'RollbackTags')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(10, N'PostClosed')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(11, N'PostReopened')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(12, N'PostDeleted')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(13, N'PostUndeleted')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(14, N'PostLocked')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(15, N'PostUnlocked')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(16, N'CommunityOwned')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(17, N'PostMigrated')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(18, N'QuestionMerged')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(19, N'QuestionProtected')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(20, N'QuestionUnprotected')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(21, N'PostDisassociated')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(22, N'QuestionUnmerged')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(23, N'UnknownDevRelatedEvent')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(24, N'SuggestedEditApplied')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(25, N'PostTweeted')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(26, N'VoteNullificationByDev')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(27, N'PostUnmigrated')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(28, N'UnknownSuggestionEvent')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(29, N'UnknownModeratorEvent')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(30, N'UnknownEvent')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(31, N'CommentDiscussionMovedToChat')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(33, N'PostNoticeAdded')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(34, N'PostNoticeRemoved')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(35, N'PostMigratedAway')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(36, N'PostMigratedHere')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(37, N'PostMergeSource')
+INSERT DUMMY.[PostHistoryTypes] ([Id], [Type]) VALUES(38, N'PostMergeDestination')
+--IDENTITY SET IDENTITY_INSERT [DUMMY].[PostHistoryTypes] OFF
+--IDENTITY DBCC CHECKIDENT('DUMMY.PostHistoryTypes', RESEED)
 
 IF 0 = 1--FULLTEXT
   BEGIN
@@ -353,6 +412,20 @@ CREATE TABLE DUMMY.[Tags] (
   CONSTRAINT [PK_Tags__Id] PRIMARY KEY CLUSTERED ([Id] ASC) ON [PRIMARY]
 ) ON [PRIMARY]
 
+CREATE TABLE DUMMY.[PostHistory] (
+  [Id] INT /* IDENTITY */ NOT NULL,
+  [PostHistoryTypeId] INT NOT NULL,
+  [PostId] INT NOT NULL,
+  -- Not a UNIQUEIDENTIFIER for conversion reasons
+  [RevisionGUID] CHAR(36) NOT NULL,
+  [CreationDate] DATETIME NOT NULL,
+  [UserId] INT NULL,
+  [UserDisplayName] NVARCHAR(40) NULL,
+  [Comment] NTEXT NULL,
+  [Text] NTEXT NULL,
+  CONSTRAINT [PK_PostHistory__Id] PRIMARY KEY CLUSTERED ([Id] ASC) ON [PRIMARY]
+) ON [PRIMARY]
+
 IF 0 = 1-- INDICES
   BEGIN
     CREATE NONCLUSTERED INDEX [IX_Badges__Id_UserId] ON DUMMY.[Badges] (
@@ -382,6 +455,15 @@ IF 0 = 1--FK
     ALTER TABLE Comments
     ADD CONSTRAINT FK_Comments_UserId__Users_Id FOREIGN KEY (UserId) REFERENCES Users(Id)
     
+	ALTER TABLE PostHistory
+	ADD CONSTRAINT FK_PostHistory_PostId__Posts_Id FOREIGN KEY (PostId) REFERENCES Posts(Id)
+
+	ALTER TABLE PostHistory
+	ADD CONSTRAINT FK_PostHistory_UserId__Users_Id FOREIGN KEY (UserId) REFERENCES Users(Id)
+
+	ALTER TABLE PostHistory
+	ADD CONSTRAINT FK_PostHistory_PostHistoryTypeId__PostHistoryTypes_Id FOREIGN KEY (PostHistoryTypeId) REFERENCES PostHistoryTypes(Id)
+
     ALTER TABLE PostLinks
     ADD CONSTRAINT FK_PostLinks_PostId__Posts_Id FOREIGN KEY (PostId) REFERENCES Posts(Id)
     
