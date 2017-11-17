@@ -35,7 +35,7 @@ namespace Salient.StackExchange.Import
                 
                 BulkLoader inserter;
                 Console.WriteLine();
-                Console.Title = "StackOverflow Data Dump Import v.10";
+                Console.Title = "StackOverflow Data Dump Import v1.4";
                 Console.WriteLine(Console.Title);
                 Console.WriteLine();
                 if(args.ToList().Find(a=>a.ToLowerInvariant()=="help" || a.ToLowerInvariant()=="?")!=null)
@@ -78,6 +78,15 @@ namespace Salient.StackExchange.Import
             {
                 
                 Console.WriteLine("\r\n{0}\r\n",ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                var inner = ex.InnerException;
+                while (inner != null)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine(inner.Message);
+                    Console.WriteLine(inner.StackTrace);
+                    inner = inner.InnerException;
+                }
                 RenderUsage();
             }
         }

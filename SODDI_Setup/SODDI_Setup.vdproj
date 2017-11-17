@@ -15,13 +15,31 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_7CDE342D3E540A39C89BCDACCB395E21"
+        "MsmKey" = "8:_66026BF96BD69B5A128DAEDA58F3F29F"
         "OwnerKey" = "8:_E128584B507D40A69BA89300B7920E85"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_BC1A86CD4604DECDD2E423DC77DAF1B8"
+        "MsmKey" = "8:_8841F164F693AA94981A7DD77E6771E2"
+        "OwnerKey" = "8:_E128584B507D40A69BA89300B7920E85"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9FD4452242D747F8476E6054C748BA9B"
+        "OwnerKey" = "8:_E128584B507D40A69BA89300B7920E85"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B1A5CB580CCFE509D29AB11263750C45"
+        "OwnerKey" = "8:_66026BF96BD69B5A128DAEDA58F3F29F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B1A5CB580CCFE509D29AB11263750C45"
         "OwnerKey" = "8:_E128584B507D40A69BA89300B7920E85"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -39,6 +57,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_FE4EC1D427804C18A2F2FF1785FC2806"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9FD4452242D747F8476E6054C748BA9B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E128584B507D40A69BA89300B7920E85"
         "MsmSig" = "8:_UNDEFINED"
@@ -46,13 +76,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7CDE342D3E540A39C89BCDACCB395E21"
+        "OwnerKey" = "8:_8841F164F693AA94981A7DD77E6771E2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BC1A86CD4604DECDD2E423DC77DAF1B8"
+        "OwnerKey" = "8:_66026BF96BD69B5A128DAEDA58F3F29F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B1A5CB580CCFE509D29AB11263750C45"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -100,7 +136,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:release\\soddi.11.msi"
+        "OutputFilename" = "8:release\\soddi.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -119,15 +155,10 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5.SP1"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5.2"
                     {
-                    "Name" = "8:.NET Framework 3.5 SP1"
-                    "ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
-                    }
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
-                    {
-                    "Name" = "8:Windows Installer 3.1"
-                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    "Name" = "8:Microsoft .NET Framework 4.5.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5.2"
                     }
                 }
             }
@@ -152,7 +183,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "Version" = "8:3.5.30729"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.5"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=76617"
                 }
@@ -160,14 +191,45 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7CDE342D3E540A39C89BCDACCB395E21"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_66026BF96BD69B5A128DAEDA58F3F29F"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Data.SQLite, Version=1.0.65.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Microsoft.Data.ConnectionUI.Dialog, Version=0.0.0.0, Culture=neutral, PublicKeyToken=f4ca07f51760da93, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7CDE342D3E540A39C89BCDACCB395E21"
+                    "_66026BF96BD69B5A128DAEDA58F3F29F"
+                    {
+                    "Name" = "8:Microsoft.Data.ConnectionUI.Dialog.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Microsoft.Data.ConnectionUI.Dialog.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_ED917B8630934D53AECC1BE99182E7CF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8841F164F693AA94981A7DD77E6771E2"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Data.SQLite, Version=1.0.106.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_8841F164F693AA94981A7DD77E6771E2"
                     {
                     "Name" = "8:System.Data.SQLite.dll"
                     "Attributes" = "3:512"
@@ -191,14 +253,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BC1A86CD4604DECDD2E423DC77DAF1B8"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9FD4452242D747F8476E6054C748BA9B"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:MySql.Data, Version=6.2.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_BC1A86CD4604DECDD2E423DC77DAF1B8"
+                    "_9FD4452242D747F8476E6054C748BA9B"
                     {
                     "Name" = "8:MySql.Data.dll"
                     "Attributes" = "3:512"
@@ -222,12 +284,63 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B1A5CB580CCFE509D29AB11263750C45"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Microsoft.Data.ConnectionUI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=f4ca07f51760da93, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_B1A5CB580CCFE509D29AB11263750C45"
+                    {
+                    "Name" = "8:Microsoft.Data.ConnectionUI.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Microsoft.Data.ConnectionUI.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_ED917B8630934D53AECC1BE99182E7CF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DA939F763A8C4902A9D571FB2698E94D"
             {
             "SourcePath" = "8:..\\soddi\\ReadMe.htm"
             "TargetName" = "8:ReadMe.htm"
             "Tag" = "8:"
             "Folder" = "8:_F8E6D8D86CA249E78D1FD02EB0B5E40B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FE4EC1D427804C18A2F2FF1785FC2806"
+            {
+            "SourcePath" = "8:..\\soddi\\bin\\x86\\Release\\x86\\SQLite.Interop.dll"
+            "TargetName" = "8:SQLite.Interop.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_C1A7D08F22E2486EB292499EE85CFD31"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -302,6 +415,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_C1A7D08F22E2486EB292499EE85CFD31"
+                    {
+                    "Name" = "8:x86"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_8C2CACDC93A24DF7BBE4537AE70F8F8E"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
         }
@@ -319,24 +443,25 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:SODDI v.10"
-        "ProductCode" = "8:{499D2130-3E99-4594-AEC7-E27E5753F40C}"
-        "PackageCode" = "8:{E31288F2-0ADC-4BBD-8F2D-8B5C1F238AE0}"
+        "ProductName" = "8:SODDI"
+        "ProductCode" = "8:{3549D2C2-3C6F-4EDA-894F-27D185FBCFD1}"
+        "PackageCode" = "8:{953F1623-73DC-4BEF-B18B-6F7B472DF5D3}"
         "UpgradeCode" = "8:{F4F718BB-8942-424F-A45E-CEE175034977}"
+        "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:00.10.000"
+        "ProductVersion" = "8:01.04.000"
         "Manufacturer" = "8:Salient Solutions"
         "ARPHELPTELEPHONE" = "8:"
-        "ARPHELPLINK" = "8:http://skysanders.net/tools/se"
+        "ARPHELPLINK" = "8:https://github.com/BrentOzarULTD/soddi"
         "Title" = "8:SODDI Setup"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Sky Sanders"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:StackOverflow Data Dump Import Utility"
-        "ARPURLINFOABOUT" = "8:http://skysanders.net/tools/se"
+        "ARPURLINFOABOUT" = "8:https://github.com/BrentOzarULTD/soddi"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
@@ -442,7 +567,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_5B3A0E6684C84F26977CAB2B0B704BD3"
             {
-            "Name" = "8:SODDI v.10"
+            "Name" = "8:SODDI"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
