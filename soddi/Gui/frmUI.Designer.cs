@@ -409,6 +409,8 @@ namespace Salient.StackExchange.Import.Gui
             // identityCheckBox
             // 
             this.identityCheckBox.AutoSize = true;
+            this.identityCheckBox.Checked = global::Salient.StackExchange.Import.Properties.Settings.Default.IdentityChecked;
+            this.identityCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Salient.StackExchange.Import.Properties.Settings.Default, "IdentityChecked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.identityCheckBox.Location = new System.Drawing.Point(10, 230);
             this.identityCheckBox.Name = "identityCheckBox";
             this.identityCheckBox.Size = new System.Drawing.Size(209, 24);
