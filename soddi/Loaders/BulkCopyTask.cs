@@ -137,8 +137,8 @@ namespace Salient.StackExchange.Import.Loaders
                 }
 
                 _bc.RowsInserted += (s, e) =>
-                    {
-                        _count += _bc.NotifyAfter;
+                {
+                        _count = e.Count;
                         e.Abort = OnRowsInserted(CopyEventType.Active);
                         if (e.Abort)
                         {

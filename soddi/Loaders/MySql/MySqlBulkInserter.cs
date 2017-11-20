@@ -131,6 +131,7 @@ namespace Salient.StackExchange.Import.Loaders.MySql
                         dbTrans.Commit();
                     }
                 }
+                OnRowsInserted(new BulkCopyEventArgs {Count = totalRecords, Type = CopyEventType.Complete});
             }
         }
     }

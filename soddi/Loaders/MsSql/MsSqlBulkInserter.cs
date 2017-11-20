@@ -89,6 +89,17 @@ namespace Salient.StackExchange.Import.Loaders.MsSql
             try
             {
                 _inner.WriteToServer(reader);
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandType = CommandType.Text;
+                        command.CommandText = $"SELECT COUNT_BIG(*) FROM {DestinationTableName}";
+                        var rowCount = (long) command.ExecuteScalar();
+                        OnRowsInserted(new BulkCopyEventArgs {Count = rowCount, Type = CopyEventType.Complete});
+                    }
+                }
             }
             finally
             {

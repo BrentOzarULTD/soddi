@@ -130,6 +130,7 @@ namespace Salient.StackExchange.Import.Loaders.SQLite
                         dbTrans.Commit();
                     }
                 }
+                OnRowsInserted(new BulkCopyEventArgs {Count = totalRecords, Type = CopyEventType.Complete});
             }
         }
     }
