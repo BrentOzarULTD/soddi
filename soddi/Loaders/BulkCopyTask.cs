@@ -25,7 +25,6 @@ namespace Salient.StackExchange.Import.Loaders
     /// </summary>
     public class BulkCopyTask
     {
-        private const int NotifyCount = 5000;
         public event EventHandler Complete;
         public event EventHandler PostProcess;
 
@@ -131,7 +130,11 @@ namespace Salient.StackExchange.Import.Loaders
             {
                 OnRowsInserted(CopyEventType.Begin, "Initializing");
 
-                _bc.NotifyAfter = NotifyCount;
+                if (_batchSize > 0)
+                {
+                    _bc.BatchSize = _batchSize;
+                    _bc.NotifyAfter = _batchSize;
+                }
 
                 _bc.RowsInserted += (s, e) =>
                     {
@@ -144,10 +147,6 @@ namespace Salient.StackExchange.Import.Loaders
                         }
                     };
                 _bc.BulkCopyTimeout = 35000;
-                if (_batchSize > 0)
-                {
-                    _bc.BatchSize = _batchSize;
-                }
 
                 _bc.DestinationTableName = string.IsNullOrEmpty(Schema)
                                                ? Table
