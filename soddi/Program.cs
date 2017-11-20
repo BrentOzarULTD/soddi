@@ -35,7 +35,7 @@ namespace Salient.StackExchange.Import
                 
                 BulkLoader inserter;
                 Console.WriteLine();
-                Console.Title = "StackOverflow Data Dump Import v1.4";
+                Console.Title = "StackOverflow Data Dump Import v1.5";
                 Console.WriteLine(Console.Title);
                 Console.WriteLine();
                 if(args.ToList().Find(a=>a.ToLowerInvariant()=="help" || a.ToLowerInvariant()=="?")!=null)

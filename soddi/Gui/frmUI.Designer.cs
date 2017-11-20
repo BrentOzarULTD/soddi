@@ -456,7 +456,7 @@ namespace Salient.StackExchange.Import.Gui
             this.MaximumSize = new System.Drawing.Size(889, 1545);
             this.MinimumSize = new System.Drawing.Size(889, 585);
             this.Name = "FrmUI";
-            this.Text = "SODDI v1.4";
+            this.Text = "SODDI v1.5";
             this.Load += new System.EventHandler(this.FormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.BatchSizeNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbProvidersBindingSource)).EndInit();

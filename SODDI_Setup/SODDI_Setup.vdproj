@@ -64,12 +64,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9FD4452242D747F8476E6054C748BA9B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E128584B507D40A69BA89300B7920E85"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -89,6 +83,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B1A5CB580CCFE509D29AB11263750C45"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9FD4452242D747F8476E6054C748BA9B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -444,15 +444,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SODDI"
-        "ProductCode" = "8:{3549D2C2-3C6F-4EDA-894F-27D185FBCFD1}"
-        "PackageCode" = "8:{953F1623-73DC-4BEF-B18B-6F7B472DF5D3}"
+        "ProductCode" = "8:{0B4DBC52-2AF8-4BCD-8903-23B1B6233E86}"
+        "PackageCode" = "8:{C9F295A7-7B8D-44EB-83F9-A80555B8C492}"
         "UpgradeCode" = "8:{F4F718BB-8942-424F-A45E-CEE175034977}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:01.04.000"
+        "ProductVersion" = "8:01.05.000"
         "Manufacturer" = "8:Salient Solutions"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/BrentOzarULTD/soddi"
