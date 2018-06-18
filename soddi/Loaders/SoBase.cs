@@ -13,6 +13,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -92,7 +93,7 @@ namespace Salient.StackExchange.Import.Loaders
                 baseType = returnType.GetGenericArguments()[0];
             }
 
-            return Convert.ChangeType(attr.Value, baseType);
+            return TypeDescriptor.GetConverter(baseType).ConvertFromInvariantString(attr.Value);
         }
 
         public static string GetTableName(Type t)

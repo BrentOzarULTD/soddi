@@ -8,8 +8,7 @@ namespace Salient.StackExchange.Import.TableTypes
         public int Id { get; set; }
         public int PostHistoryTypeId { get; set; }
         public int PostId { get; set; }
-        // Not a Guid for conversion reasons
-        public string RevisionGUID { get; set; }
+        public Guid RevisionGUID { get; set; }
         public DateTime CreationDate { get; set; }
         public int? UserId { get; set; }
         public string UserDisplayName { get; set; }

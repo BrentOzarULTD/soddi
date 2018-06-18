@@ -416,13 +416,12 @@ CREATE TABLE DUMMY.[PostHistory] (
   [Id] INT /* IDENTITY */ NOT NULL,
   [PostHistoryTypeId] INT NOT NULL,
   [PostId] INT NOT NULL,
-  -- Not a UNIQUEIDENTIFIER for conversion reasons
-  [RevisionGUID] CHAR(36) NOT NULL,
+  [RevisionGUID] UNIQUEIDENTIFIER NOT NULL,
   [CreationDate] DATETIME NOT NULL,
   [UserId] INT NULL,
   [UserDisplayName] NVARCHAR(40) NULL,
-  [Comment] NTEXT NULL,
-  [Text] NTEXT NULL,
+  [Comment] NVARCHAR(MAX) NULL,
+  [Text] NVARCHAR(MAX) NULL,
   CONSTRAINT [PK_PostHistory__Id] PRIMARY KEY CLUSTERED ([Id] ASC) ON [PRIMARY]
 ) ON [PRIMARY]
 
